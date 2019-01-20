@@ -1,0 +1,3 @@
+rootProject.name = 'eticket'
+
+include ':app'
