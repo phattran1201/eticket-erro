@@ -1,20 +1,22 @@
+import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import { Dimensions, Platform, PixelRatio } from 'react-native';
 import ExtraDimensions from 'react-native-extra-dimensions-android';
 import strings from './Strings';
-import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 
 //Default
+export const IS_IOS = Platform.OS === 'ios';
+export const IS_ANDROID = Platform.OS === 'android';
 const defaultWidth = WIDTH_DEVICE() / 375;
 const defaultHeight = HEIGHT_DEVICE() / 667;
 export const headerHeight =
   48 * SCALE_RATIO_HEIGHT_BASIS + getStatusBarHeight();
 
 //Scale ratio
-export function WIDTH_DEVICE(width = 0) {
+export function WIDTH_DEVICE(width = 1) {
   return width * Dimensions.get('window').width;
 }
 
-export function HEIGHT_DEVICE(height = 0) {
+export function HEIGHT_DEVICE(height = 1) {
   return height * Platform.OS === 'ios'
     ? Dimensions.get('window').height
     : ExtraDimensions.get('REAL_WINDOW_HEIGHT');

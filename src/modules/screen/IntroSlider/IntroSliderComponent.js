@@ -1,13 +1,17 @@
-/* eslint-disable import/imports-first */
 /* eslint-disable no-underscore-dangle */
 import React from 'react';
 import { Dimensions, Platform, StyleSheet, Text, View } from 'react-native';
 import Carousel, { ParallaxImage } from 'react-native-snap-carousel';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { FS, SCALE_RATIO_HEIGHT_BASIS } from '../../../constants/Constants';
+import {
+  FS,
+  SCALE_RATIO_HEIGHT_BASIS,
+  WIDTH_DEVICE,
+  HEIGHT_DEVICE
+} from '../../../constants/Constants';
 import style from '../../../constants/style';
 import MyComponent from '../../view/MyComponent';
-import { getStatusBarHeight } from 'react-native-status-bar-height';
+import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 
 export const dataIntroSlider = [
   {
@@ -43,24 +47,24 @@ export const dataIntroSlider = [
   }
 ];
 
-const IS_IOS = Platform.OS === 'ios';
-const { width: viewportWidth, height: viewportHeight } = Dimensions.get(
-  'window'
-);
+// const IS_IOS = Platform.OS === 'ios';
+// const { width: viewportWidth, height: viewportHeight } = Dimensions.get(
+//   'window'
+// );
 
-function wp(percentage) {
-  const value = (percentage * viewportWidth) / 100;
-  return Math.round(value);
-}
+// function wp(percentage) {
+//   const value = (percentage * viewportWidth) / 100;
+//   return Math.round(value);
+// }
 
-const slideHeight = viewportHeight * 0.6;
-const slideWidth = wp(75);
-const itemHorizontalMargin = wp(2);
+// const slideHeight = viewportHeight * 0.6;
+// const slideWidth = wp(75);
+// const itemHorizontalMargin = wp(2);
 
-export const sliderWidth = viewportWidth;
-export const itemWidth = slideWidth + itemHorizontalMargin * 2;
+// export const sliderWidth = WIDTH_DEVICE();
+// export const itemWidth = slideWidth + itemHorizontalMargin * 2;
 
-const entryBorderRadius = 8;
+// const 8 = 8;
 
 export default class IntroSliderComponent extends MyComponent {
   constructor(props) {
@@ -91,15 +95,15 @@ export default class IntroSliderComponent extends MyComponent {
       <View
         style={{
           flex: 1,
-          marginTop: getStatusBarHeight()()
+          marginTop: getStatusBarHeight()
         }}
       >
         <Carousel
           data={dataIntroSlider}
           renderItem={this._renderItem}
           hasParallaxImages
-          sliderWidth={sliderWidth}
-          itemWidth={itemWidth}
+          sliderWidth={WIDTH_DEVICE()}
+          itemWidth={WIDTH_DEVICE('70%')}
           firstItem={1}
           inactiveSlideScale={0.94}
           inactiveSlideOpacity={0.7}
@@ -160,29 +164,29 @@ export default class IntroSliderComponent extends MyComponent {
 }
 export const styles = StyleSheet.create({
   slideInnerContainer: {
-    width: itemWidth,
-    height: slideHeight,
-    paddingHorizontal: itemHorizontalMargin,
+    width: WIDTH_DEVICE('70%'),
+    height: HEIGHT_DEVICE(0.6),
+    paddingHorizontal: WIDTH_DEVICE(3),
     paddingBottom: 18 // needed for shadow
   },
   shadow: {
     position: 'absolute',
     top: 0,
-    left: itemHorizontalMargin,
-    right: itemHorizontalMargin,
+    left: WIDTH_DEVICE(3),
+    right: WIDTH_DEVICE(3),
     bottom: 18,
     shadowColor: 'black',
     shadowOpacity: 0.25,
     shadowOffset: { width: 0, height: 10 },
     shadowRadius: 10,
-    borderRadius: entryBorderRadius
+    borderRadius: 8
   },
   imageContainer: {
     flex: 1,
     marginBottom: IS_IOS ? 0 : -1, // Prevent a random Android rendering issue
     backgroundColor: 'white'
-    // borderTopLeftRadius: entryBorderRadius,
-    // borderTopRightRadius: entryBorderRadius
+    // borderTopLeftRadius: 8,
+    // borderTopRightRadius: 8
   },
   imageContainerEven: {
     backgroundColor: 'black'
@@ -190,9 +194,9 @@ export const styles = StyleSheet.create({
   image: {
     ...StyleSheet.absoluteFillObject,
     resizeMode: 'cover',
-    borderRadius: IS_IOS ? entryBorderRadius : 0,
-    borderTopLeftRadius: entryBorderRadius,
-    borderTopRightRadius: entryBorderRadius
+    borderRadius: IS_IOS ? 8 : 0,
+    borderTopLeftRadius: 8,
+    borderTopRightRadius: 8
   },
   // image's border radius is buggy on iOS; let's hack it!
   radiusMask: {
@@ -200,7 +204,7 @@ export const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    height: entryBorderRadius,
+    height: 8,
     backgroundColor: 'white'
   },
   radiusMaskEven: {
@@ -208,12 +212,12 @@ export const styles = StyleSheet.create({
   },
   textContainer: {
     justifyContent: 'center',
-    paddingTop: 20 - entryBorderRadius,
+    paddingTop: 20 - 8,
     paddingBottom: 20,
     paddingHorizontal: 16,
     backgroundColor: 'white',
-    borderBottomLeftRadius: entryBorderRadius,
-    borderBottomRightRadius: entryBorderRadius
+    borderBottomLeftRadius: 8,
+    borderBottomRightRadius: 8
   },
   textContainerEven: {
     backgroundColor: 'black'

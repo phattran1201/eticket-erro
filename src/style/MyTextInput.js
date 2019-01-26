@@ -1,7 +1,15 @@
 import React from 'react';
-import { Dimensions, Image, Platform, StatusBar, View, TextInput, Text } from 'react-native';
+import {
+  Dimensions,
+  Image,
+  Platform,
+  StatusBar,
+  View,
+  TextInput,
+  Text
+} from 'react-native';
 // import LinearGradient from 'react-native-linear-gradient';
-import { getStatusBarHeight } from 'react-native-status-bar-height';
+import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import Feather from 'react-native-vector-icons/dist/Feather';
 import Ionicons from 'react-native-vector-icons/dist/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/dist/MaterialCommunityIcons';
@@ -210,7 +218,11 @@ class MyTextInput extends BaseInput {
                 : { paddingRight: 5 * NEW_SCALE_RATIO }
             }
           >
-            {this.renderIcon(secondRightIconType, secondRightIcon, secondRightIconStyle)}
+            {this.renderIcon(
+              secondRightIconType,
+              secondRightIcon,
+              secondRightIconStyle
+            )}
           </MyTouchableOpacity>
         ) : null}
 
@@ -222,7 +234,11 @@ class MyTextInput extends BaseInput {
                 if (onRightPress) onRightPress();
               }, 0);
             }}
-            style={btnRightStyle ? this.props.btnRightStyle : { paddingRight: 5 * NEW_SCALE_RATIO }}
+            style={
+              btnRightStyle
+                ? this.props.btnRightStyle
+                : { paddingRight: 5 * NEW_SCALE_RATIO }
+            }
           >
             {this.renderIcon(rightIconType, rightIcon, rightIconStyle)}
           </MyTouchableOpacity>
@@ -239,7 +255,9 @@ class MyTextInput extends BaseInput {
               }, 0);
             }}
             style={
-              btnRightStyle2 ? this.props.btnRightStyle2 : { paddingRight: 5 * NEW_SCALE_RATIO }
+              btnRightStyle2
+                ? this.props.btnRightStyle2
+                : { paddingRight: 5 * NEW_SCALE_RATIO }
             }
           >
             {this.renderIcon(rightIconType2, rightIcon2, rightIconStyle2)}
@@ -257,7 +275,9 @@ class MyTextInput extends BaseInput {
               }, 0);
             }}
             style={
-              btnRightStyle3 ? this.props.btnRightStyle3 : { paddingRight: 5 * NEW_SCALE_RATIO }
+              btnRightStyle3
+                ? this.props.btnRightStyle3
+                : { paddingRight: 5 * NEW_SCALE_RATIO }
             }
           >
             {this.renderIcon(rightIconType3, rightIcon3, rightIconStyle3)}

@@ -1,6 +1,6 @@
 /* eslint-disable no-mixed-operators */
 import { Platform, StyleSheet } from 'react-native';
-import { getStatusBarHeight } from 'react-native-status-bar-height';
+import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import {
   FS,
   SCALE_RATIO_HEIGHT_BASIS,
@@ -22,7 +22,7 @@ const style = StyleSheet.create({
     color: '#9297D3',
     backgroundColor: 'transparent'
   },
-  textAlign: {
+  textCenter: {
     textAlign: 'center'
   },
   //Button
