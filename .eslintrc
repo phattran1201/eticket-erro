@@ -1,0 +1,17 @@
+{
+    "extends": "rallycoding",
+    "rules": {
+        "no-mixed-operators": "off",
+        "max-len": [
+            "error",
+            {
+                "ignorePattern": "^\\s*var\\s.+=\\s*require\\s*\\(",
+                "ignoreComments": true,
+                "ignoreTrailingComments": true,
+                "ignoreUrls": true,
+                "ignoreStrings": true,
+                "ignoreRegExpLiterals": true
+            }
+        ]
+    }
+}

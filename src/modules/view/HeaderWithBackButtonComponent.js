@@ -1,0 +1,50 @@
+import React from 'react';
+import { StatusBar, Text, View } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
+import Icons from 'react-native-vector-icons/Feather';
+import { FS, SCALE_RATIO_WIDTH_BASIS } from '../../constants/Constants';
+import style from '../../constants/style';
+import MyComponent from './MyComponent';
+import STouchableOpacity from './STouchableOpacity';
+
+export default class HeaderWithBackButtonComponent extends MyComponent {
+  render() {
+    const { bodyTitle, onPress, noShadow, styleShadow } = this.props;
+    return (
+      <View>
+        <View style={[style.header]}>
+          <StatusBar backgroundColor="#fff" barStyle="dark-content" />
+          <STouchableOpacity
+            onPress={onPress}
+            style={{ paddingHorizontal: 16 * SCALE_RATIO_WIDTH_BASIS }}
+          >
+            <Icons name="arrow-left" size={FS(20)} color="#AE92D3" />
+          </STouchableOpacity>
+          <View
+            style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+          >
+            <Text style={style.titleHeader}>
+              {bodyTitle ? bodyTitle.toUpperCase() : ''}
+            </Text>
+          </View>
+          <View style={{ paddingHorizontal: 16 * SCALE_RATIO_WIDTH_BASIS }}>
+            <Icons name="arrow-right" size={FS(20)} color="transparent" />
+          </View>
+        </View>
+        {noShadow ? null : (
+          <LinearGradient
+            colors={['#AE92D350', 'transparent']}
+            style={
+              (styleShadow,
+              {
+                left: 0,
+                right: 0,
+                height: 4
+              })
+            }
+          />
+        )}
+      </View>
+    );
+  }
+}
