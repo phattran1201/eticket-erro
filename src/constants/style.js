@@ -15,7 +15,7 @@ export const COLOR_TERTIARY = '#224466';
 export const COLOR_TEXT = '#333333';
 export const COLOR_TEXT_SECONDARY = '#707070';
 export const COLOR_TEXT_BUTTON = '#FFFFFF';
-export const COLOR_TEXT_BUTTON_OUTLINE = '#333333';
+export const COLOR_TEXT_BUTTON_OUTLINE = '#FF4D00';
 
 export const FONT_LIGHT = 'helveticaneuelight';
 export const FONT_NORMAL = 'helveticaneue';
@@ -46,18 +46,14 @@ const style = StyleSheet.create({
     fontSize: FONTSIZE(14),
     fontFamily: 'helveticaneuemedium',
     color: COLOR_TEXT_BUTTON,
-    textTransform: 'uppercase',
-    paddingHorizontal: SCALE_WIDTH(30)
+    textTransform: 'uppercase'
   },
   //Button
   button: {
-    height: 41 * SCALE_HEIGHT,
-    flexDirection: 'row',
+    height: SCALE_WIDTH(44),
     alignItems: 'center',
-    borderRadius: (41 * SCALE_HEIGHT) / 2,
-    paddingVertical: 8 * SCALE_HEIGHT,
-    paddingHorizontal: 25 * SCALE_WIDTH,
-    alignSelf: 'stretch',
+    borderRadius: SCALE_WIDTH(5),
+    paddingHorizontal: SCALE_WIDTH(30),
     justifyContent: 'center',
     shadowRadius: 5
   },

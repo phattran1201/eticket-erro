@@ -15,13 +15,11 @@ import Ionicons from 'react-native-vector-icons/dist/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/dist/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/dist/MaterialIcons';
 import SimpleLineIcons from 'react-native-vector-icons/dist/SimpleLineIcons';
-import {
-  FONTSIZE,
-  NEW_SCALE_RATIO,
-  SCALE_HEIGHT,
-  SCALE_WIDTH
-} from '../constants/Constants';
-import style from '../constants/style';
+import { FONTSIZE, NEW_SCALE_RATIO, SCALE_WIDTH } from '../constants/Constants';
+import style, {
+  COLOR_TEXT_BUTTON,
+  COLOR_TEXT_BUTTON_OUTLINE
+} from '../constants/style';
 // import isEqual from 'lodash.isequal';
 
 class MyButton extends Component {
@@ -60,9 +58,13 @@ class MyButton extends Component {
         const element = (
           <Text
             style={[
-              styles.textButton,
+              style.textButton,
               this.props.textStyle,
-              { color: this.props.outline ? '#AE92D3' : '#fff' }
+              {
+                color: this.props.outline
+                  ? COLOR_TEXT_BUTTON_OUTLINE
+                  : COLOR_TEXT_BUTTON
+              }
             ]}
             allowFontScaling={this.props.allowFontScaling}
             key={item}
@@ -85,7 +87,9 @@ class MyButton extends Component {
           animating
           size="small"
           style={styles.spinner}
-          color={this.props.outline ? '#AE92D3' : '#fff'}
+          color={
+            this.props.outline ? COLOR_TEXT_BUTTON_OUTLINE : COLOR_TEXT_BUTTON
+          }
         />
       );
     }
@@ -99,7 +103,9 @@ class MyButton extends Component {
           name={icon}
           size={(styleIcon && styleIcon.width) || FONTSIZE(20)}
           style={styleIcon}
-          color={this.props.outline ? '#AE92D3' : '#fff'}
+          color={
+            this.props.outline ? COLOR_TEXT_BUTTON_OUTLINE : COLOR_TEXT_BUTTON
+          }
         />
       );
     }
@@ -109,7 +115,9 @@ class MyButton extends Component {
           name={icon}
           size={(styleIcon && styleIcon.width) || FONTSIZE(20)}
           style={styleIcon}
-          color={this.props.outline ? '#AE92D3' : '#fff'}
+          color={
+            this.props.outline ? COLOR_TEXT_BUTTON_OUTLINE : COLOR_TEXT_BUTTON
+          }
         />
       );
     }
@@ -119,7 +127,9 @@ class MyButton extends Component {
           name={icon}
           size={(styleIcon && styleIcon.width) || FONTSIZE(20)}
           style={styleIcon}
-          color={this.props.outline ? '#AE92D3' : '#fff'}
+          color={
+            this.props.outline ? COLOR_TEXT_BUTTON_OUTLINE : COLOR_TEXT_BUTTON
+          }
         />
       );
     }
@@ -129,7 +139,9 @@ class MyButton extends Component {
           name={icon}
           size={(styleIcon && styleIcon.width) || FONTSIZE(20)}
           style={styleIcon}
-          color={this.props.outline ? '#AE92D3' : '#fff'}
+          color={
+            this.props.outline ? COLOR_TEXT_BUTTON_OUTLINE : COLOR_TEXT_BUTTON
+          }
         />
       );
     }
@@ -139,7 +151,9 @@ class MyButton extends Component {
           name={icon}
           size={(styleIcon && styleIcon.width) || FONTSIZE(20)}
           style={styleIcon}
-          color={this.props.outline ? '#AE92D3' : '#fff'}
+          color={
+            this.props.outline ? COLOR_TEXT_BUTTON_OUTLINE : COLOR_TEXT_BUTTON
+          }
         />
       );
     }
@@ -172,40 +186,16 @@ class MyButton extends Component {
       rightIconType,
       rightIconStyle,
 
-      outline,
-      width,
-      styleContent
+      outline
     } = this.props;
 
     const styles = StyleSheet.create({
       button: {
-        height: 33 * SCALE_HEIGHT,
-        flexDirection: 'row',
-        alignItems: 'center',
-        borderRadius: (33 * SCALE_HEIGHT) / 2,
-        paddingVertical: 8 * SCALE_HEIGHT,
-        paddingHorizontal: 25 * SCALE_WIDTH,
-        alignSelf: 'stretch',
-        justifyContent: 'center',
-        shadowColor: '#AE92D3',
-        shadowOffset: {
-          width: 0,
-          height: 3
-        },
-        width,
-        shadowOpacity: 1,
-        shadowRadius: 10,
-        backgroundColor: outline ? '#fff' : '#AE92D3',
+        backgroundColor: outline
+          ? COLOR_TEXT_BUTTON
+          : COLOR_TEXT_BUTTON_OUTLINE,
         borderWidth: outline ? 1 : 0,
-        borderColor: outline ? '#AE92D3' : '#fff'
-      },
-      textButton: {
-        fontSize: FONTSIZE(12),
-        textAlign: 'center',
-        fontFamily: 'helveticaneue',
-        color: outline ? '#AE92D3' : '#fff',
-        fontWeight: 'bold',
-        backgroundColor: 'transparent'
+        borderColor: outline ? COLOR_TEXT_BUTTON_OUTLINE : COLOR_TEXT_BUTTON
       },
       spinner: {
         alignSelf: 'center'
@@ -222,7 +212,6 @@ class MyButton extends Component {
             styles.button,
             style.button,
             this.props.style,
-            styleContent,
             this.props.disabledStyle || styles.opacity
           ]}
         >
@@ -249,7 +238,7 @@ class MyButton extends Component {
       });
       return (
         <TouchableNativeFeedback {...touchableProps}>
-          <View style={[styles.button, this.props.style, styleContent]}>
+          <View style={[styles.button, this.props.style]}>
             {leftIcon ? (
               <View style={{ marginRight: 5 * SCALE_WIDTH }}>
                 {this.renderIcon(leftIconType, leftIcon, leftIconStyle)}
@@ -267,7 +256,7 @@ class MyButton extends Component {
     }
     return (
       <TouchableOpacity {...touchableProps}>
-        <View style={[styles.button, this.props.style, styleContent]}>
+        <View style={[styles.button, this.props.style]}>
           {leftIcon ? (
             <View style={{ marginRight: 5 * SCALE_WIDTH }}>
               {this.renderIcon(leftIconType, leftIcon, leftIconStyle)}
@@ -286,32 +275,6 @@ class MyButton extends Component {
 }
 
 const styles = StyleSheet.create({
-  button: {
-    height: 33 * SCALE_HEIGHT,
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderRadius: (33 * SCALE_HEIGHT) / 2,
-    paddingVertical: 8 * SCALE_HEIGHT,
-    paddingHorizontal: 25 * SCALE_WIDTH,
-    alignSelf: 'stretch',
-    justifyContent: 'center',
-    shadowColor: '#AE92D3',
-    shadowOffset: {
-      width: 0,
-      height: 3
-    },
-    shadowOpacity: 1,
-    shadowRadius: 10
-    // elevation: 5
-  },
-  textButton: {
-    fontSize: FONTSIZE(12),
-    textAlign: 'center',
-    fontFamily: 'helveticaneue',
-    fontWeight: '600',
-    backgroundColor: 'transparent',
-    letterSpacing: 1
-  },
   spinner: {
     alignSelf: 'center'
   },
