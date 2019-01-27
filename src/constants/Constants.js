@@ -4,40 +4,52 @@ import ExtraDimensions from 'react-native-extra-dimensions-android';
 import strings from './Strings';
 
 //Default
-export const IS_IOS = Platform.OS === 'ios';
-export const IS_ANDROID = Platform.OS === 'android';
-const defaultWidth = WIDTH_DEVICE() / 375;
-const defaultHeight = HEIGHT_DEVICE() / 667;
-export const headerHeight =
-  48 * SCALE_RATIO_HEIGHT_BASIS + getStatusBarHeight();
-
-//Scale ratio
-export function WIDTH_DEVICE(width = 1) {
-  return width * Dimensions.get('window').width;
-}
-
-export function HEIGHT_DEVICE(height = 1) {
-  return height * Platform.OS === 'ios'
+export const WIDTH_DEVICE = Dimensions.get('window').width;
+export const HEIGHT_DEVICE =
+  Platform.OS === 'ios'
     ? Dimensions.get('window').height
     : ExtraDimensions.get('REAL_WINDOW_HEIGHT');
-}
+export const IS_IOS = Platform.OS === 'ios';
+export const IS_ANDROID = Platform.OS === 'android';
+const defaultWidth = WIDTH_DEVICE / 375;
+const defaultHeight = HEIGHT_DEVICE / 667;
+export const headerHeight = 48 * SCALE_HEIGHT + getStatusBarHeight();
+//Scale ratio
+export const SCALE_WIDTH = (scaleWidth = 100) =>
+  Math.round(PixelRatio.roundToNearestPixel(scaleWidth * defaultWidth));
+export const SCALE_HEIGHT = (scaleHeight = 177.87) =>
+  Math.round(PixelRatio.roundToNearestPixel(scaleHeight * defaultHeight));
 
-export function SCALE_RATIO_WIDTH_BASIS(scaleWidth) {
-  return scaleWidth * defaultWidth;
-}
-export function SCALE_RATIO_HEIGHT_BASIS(scaleWidth) {
-  return scaleWidth * defaultHeight;
-}
-
+export const SCALE_WIDTH_PERCEN = (scaleWidthPercen = 100) => {
+  const elemWidth = parseFloat(scaleWidthPercen);
+  return PixelRatio.roundToNearestPixel((WIDTH_DEVICE * elemWidth) / 100);
+};
+export const SCALE_HEIGHT_PERCEN = (scaleHeightPercen = 100) => {
+  const elemHeight = parseFloat(scaleHeightPercen);
+  return PixelRatio.roundToNearestPixel((HEIGHT_DEVICE * elemHeight) / 100);
+};
 //font scale Use iPhone6 as base size which is 375 x 667
-const fontScale = Math.min(defaultWidth, defaultHeight);
-export function FS(size) {
-  const fontSize = size * fontScale;
+export const FONTSIZE = (size = 14) => {
+  const fontSize = size * defaultWidth;
   if (Platform.OS === 'ios') {
     return Math.round(PixelRatio.roundToNearestPixel(fontSize));
   }
   return Math.round(PixelRatio.roundToNearestPixel(fontSize)) - 2;
-}
+};
+
+console.log('TCL: WIDTH_DEVICE', WIDTH_DEVICE);
+
+console.log('TCL: HEIGHT_DEVICE', HEIGHT_DEVICE);
+
+console.log('TCL: SCALE_WIDTH', SCALE_WIDTH());
+
+console.log('TCL: SCALE_HEIGHT', SCALE_HEIGHT());
+
+console.log('TCL: SCALE_WIDTH_PERCEN', SCALE_WIDTH_PERCEN());
+
+console.log('TCL: SCALE_HEIGHT_PERCEN', SCALE_HEIGHT_PERCEN());
+
+console.log('TCL: FONTSIZE', FONTSIZE());
 
 // export const IMAGE_RESIZE_QUALITY = 100;
 // export const IMAGE_RESIZE_MAXWIDTH = 888;

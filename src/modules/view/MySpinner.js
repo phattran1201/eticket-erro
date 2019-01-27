@@ -2,11 +2,15 @@ import LottieView from 'lottie-react-native';
 import React from 'react';
 import { Dimensions, View } from 'react-native';
 import Spinner from 'react-native-loading-spinner-overlay';
-import { SCALE_RATIO_WIDTH_BASIS } from '../../constants/Constants';
+import {
+  SCALE_WIDTH,
+  WIDTH_DEVICE,
+  HEIGHT_DEVICE
+} from '../../constants/Constants';
 import strings from '../../constants/Strings';
 import MyComponent from './MyComponent';
 
-const { height, width } = Dimensions.get('window');
+const spiner = require('../../assets/preloader.json');
 
 export default class MySpinner extends MyComponent {
   static instance = null;
@@ -23,7 +27,7 @@ export default class MySpinner extends MyComponent {
     super(props);
     MySpinner.instance = this;
     this.state = {
-      visible: false
+      visible: true
     };
   }
   render() {
@@ -37,8 +41,8 @@ export default class MySpinner extends MyComponent {
       >
         <View
           style={{
-            width,
-            height,
+            width: WIDTH_DEVICE,
+            height: HEIGHT_DEVICE(),
             justifyContent: 'center',
             alignItems: 'center',
             backgroundColor: 'transparent'
@@ -46,22 +50,22 @@ export default class MySpinner extends MyComponent {
         >
           <View
             style={{
-              width: 25 * SCALE_RATIO_WIDTH_BASIS,
-              height: 25 * SCALE_RATIO_WIDTH_BASIS,
-              borderRadius: 5 * SCALE_RATIO_WIDTH_BASIS,
+              width: SCALE_WIDTH(25),
+              height: SCALE_WIDTH(25),
+              borderRadius: SCALE_WIDTH(5),
               justifyContent: 'center',
               alignItems: 'center',
               backgroundColor: 'rgba(0, 0, 0, 0.5)'
             }}
           >
             <LottieView
-              source={require('../../assets/preloader.json')}
+              source={spiner}
               autoPlay
               loop
               hardwareAccelerationAndroid
               style={{
-                width: 30 * SCALE_RATIO_WIDTH_BASIS,
-                height: 30 * SCALE_RATIO_WIDTH_BASIS,
+                width: SCALE_WIDTH(30),
+                height: SCALE_WIDTH(30),
                 alignSelf: 'center'
               }}
             />

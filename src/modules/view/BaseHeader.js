@@ -10,11 +10,11 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Foundation from 'react-native-vector-icons/Foundation';
 import Zocial from 'react-native-vector-icons/Zocial';
 import {
-  FS,
+  FONTSIZE,
   NEW_SCALE_RATIO,
-  NEW_SCALE_RATIO_WIDTH_BASIS,
-  SCALE_RATIO_HEIGHT_BASIS,
-  SCALE_RATIO_WIDTH_BASIS
+  NEW_SCALE_WIDTH,
+  SCALE_HEIGHT,
+  SCALE_WIDTH
 } from '../../constants/Constants';
 import style from '../../constants/style';
 import MyComponent from './MyComponent';
@@ -28,7 +28,7 @@ class BaseHeader extends MyComponent {
       return (
         <FontAwesome
           name={icon}
-          size={(styleIcon && styleIcon.width) || FS(20)}
+          size={(styleIcon && styleIcon.width) || FONTSIZE(20)}
           style={styleIcon}
           color="#AE92D3"
         />
@@ -38,7 +38,7 @@ class BaseHeader extends MyComponent {
       return (
         <Foundation
           name={icon}
-          size={(styleIcon && styleIcon.width) || FS(20)}
+          size={(styleIcon && styleIcon.width) || FONTSIZE(20)}
           style={styleIcon}
           color="#AE92D3"
         />
@@ -48,7 +48,7 @@ class BaseHeader extends MyComponent {
       return (
         <Zocial
           name={icon}
-          size={(styleIcon && styleIcon.width) || FS(20)}
+          size={(styleIcon && styleIcon.width) || FONTSIZE(20)}
           style={styleIcon}
           color="#AE92D3"
         />
@@ -58,7 +58,7 @@ class BaseHeader extends MyComponent {
       return (
         <Ionicons
           name={icon}
-          size={(styleIcon && styleIcon.width) || FS(20)}
+          size={(styleIcon && styleIcon.width) || FONTSIZE(20)}
           style={styleIcon}
           color="#AE92D3"
         />
@@ -68,7 +68,7 @@ class BaseHeader extends MyComponent {
       return (
         <MaterialIcons
           name={icon}
-          size={(styleIcon && styleIcon.width) || FS(20)}
+          size={(styleIcon && styleIcon.width) || FONTSIZE(20)}
           style={styleIcon}
           color="#AE92D3"
         />
@@ -78,7 +78,7 @@ class BaseHeader extends MyComponent {
       return (
         <MaterialCommunityIcons
           name={icon}
-          size={(styleIcon && styleIcon.width) || FS(20)}
+          size={(styleIcon && styleIcon.width) || FONTSIZE(20)}
           style={styleIcon}
           color="#AE92D3"
         />
@@ -88,7 +88,7 @@ class BaseHeader extends MyComponent {
       return (
         <Feather
           name={icon}
-          size={(style && style.width) || FS(20)}
+          size={(style && style.width) || FONTSIZE(20)}
           style={style}
           color="#AE92D3"
         />
@@ -98,7 +98,7 @@ class BaseHeader extends MyComponent {
       return (
         <SimpleLineIcons
           name={icon}
-          size={(style && style.width) || FS(20)}
+          size={(style && style.width) || FONTSIZE(20)}
           style={style}
           color="#AE92D3"
         />
@@ -186,13 +186,13 @@ class BaseHeader extends MyComponent {
                   if (onLeftPress) onLeftPress();
                 }, 0);
               }}
-              style={{ paddingHorizontal: 16 * SCALE_RATIO_WIDTH_BASIS }}
+              style={{ paddingHorizontal: 16 * SCALE_WIDTH }}
             >
               {this.renderIcon(leftIconType, leftIcon, leftIconStyle)}
             </STouchableOpacity>
           ) : (
-            <View style={{ paddingHorizontal: 16 * SCALE_RATIO_WIDTH_BASIS }}>
-              <Feather name="arrow-left" size={FS(20)} color="transparent" />
+            <View style={{ paddingHorizontal: 16 * SCALE_WIDTH }}>
+              <Feather name="arrow-left" size={FONTSIZE(20)} color="transparent" />
             </View>
           )}
 
@@ -213,8 +213,8 @@ class BaseHeader extends MyComponent {
           rightIcon2 ||
           rightIcon3 ||
           rightIconMenu ? null : (
-            <View style={{ paddingHorizontal: 16 * SCALE_RATIO_WIDTH_BASIS }}>
-              <Feather name="arrow-right" size={FS(20)} color="transparent" />
+            <View style={{ paddingHorizontal: 16 * SCALE_WIDTH }}>
+              <Feather name="arrow-right" size={FONTSIZE(20)} color="transparent" />
             </View>
           )}
 
@@ -223,7 +223,7 @@ class BaseHeader extends MyComponent {
               {rightIcon === 'envelope' ? (
                 <IconMessageAndBadgeComponent
                   navigation={this.props.navigation}
-                  containerStyle={{ marginRight: 16 * SCALE_RATIO_WIDTH_BASIS }}
+                  containerStyle={{ marginRight: 16 * SCALE_WIDTH }}
                 />
               ) : (
                 <STouchableOpacity
@@ -236,7 +236,7 @@ class BaseHeader extends MyComponent {
                   style={
                     btnRightStyle
                       ? this.props.btnRightStyle
-                      : { paddingHorizontal: 16 * SCALE_RATIO_WIDTH_BASIS }
+                      : { paddingHorizontal: 16 * SCALE_WIDTH }
                   }
                 >
                   {this.renderIcon(rightIconType, rightIcon, rightIconStyle)}
@@ -256,7 +256,7 @@ class BaseHeader extends MyComponent {
               style={
                 btnRightStyle2
                   ? this.props.btnRightStyle2
-                  : { paddingRight: 16 * SCALE_RATIO_WIDTH_BASIS }
+                  : { paddingRight: 16 * SCALE_WIDTH }
               }
             >
               {this.renderIcon(rightIconType2, rightIcon2, rightIconStyle2)}
@@ -274,7 +274,7 @@ class BaseHeader extends MyComponent {
               style={
                 btnRightStyle3
                   ? this.props.btnRightStyle3
-                  : { paddingRight: 16 * SCALE_RATIO_WIDTH_BASIS }
+                  : { paddingRight: 16 * SCALE_WIDTH }
               }
             >
               {this.renderIcon(rightIconType3, rightIcon3, rightIconStyle3)}
@@ -292,13 +292,13 @@ class BaseHeader extends MyComponent {
                 borderTopRightRadius: 0,
                 left: null,
                 right: 8.5 * NEW_SCALE_RATIO,
-                marginTop: 1.5 * SCALE_RATIO_HEIGHT_BASIS
+                marginTop: 1.5 * SCALE_HEIGHT
               }}
               overlayStyle={{ borderTopRightRadius: 0 }}
-              fontSize={15 * SCALE_RATIO_WIDTH_BASIS}
+              fontSize={15 * SCALE_WIDTH}
               dropdownPosition={0}
               itemTextStyle={{
-                fontSize: 4.5 * NEW_SCALE_RATIO_WIDTH_BASIS,
+                fontSize: 4.5 * NEW_SCALE_WIDTH,
                 fontFamily: 'helveticaneue'
               }}
             >

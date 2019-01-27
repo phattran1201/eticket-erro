@@ -9,7 +9,7 @@ import {
   Platform
 } from 'react-native';
 
-import { SCALE_RATIO_HEIGHT_BASIS, SCALE_RATIO_WIDTH_BASIS, FS } from '../constants/Constants';
+import { SCALE_HEIGHT, SCALE_WIDTH, FONTSIZE } from '../constants/Constants';
 
 import BaseInput from './BaseInput';
 import style from '../constants/style';
@@ -27,7 +27,7 @@ export default class MyTextInputFloat extends BaseInput {
 
   static defaultProps = {
     iconColor: '#AE92D3',
-    height: 40 * SCALE_RATIO_HEIGHT_BASIS,
+    height: 40 * SCALE_HEIGHT,
     animationDuration: 300,
     iconName: 'heart'
   };
@@ -56,7 +56,7 @@ export default class MyTextInputFloat extends BaseInput {
             height: inputHeight + PADDING,
             backgroundColor: '#fff',
             borderRadius: inputHeight + PADDING / 2,
-            marginBottom: 12 * SCALE_RATIO_HEIGHT_BASIS,
+            marginBottom: 12 * SCALE_HEIGHT,
             shadowRadius: inputHeight + PADDING / 2
           }
         ]}
@@ -66,16 +66,16 @@ export default class MyTextInputFloat extends BaseInput {
           <Animated.View
             style={{
               position: 'absolute',
-              // paddingBottom: 5 * SCALE_RATIO_HEIGHT_BASIS,
+              // paddingBottom: 5 * SCALE_HEIGHT,
               bottom: focusedAnim.interpolate({
                 inputRange: [0, 1],
                 outputRange: Platform.OS === 'ios' ? [
-                  LABEL_HEIGHT - 5 * SCALE_RATIO_HEIGHT_BASIS, 
-                  LABEL_HEIGHT + 12 * SCALE_RATIO_HEIGHT_BASIS
+                  LABEL_HEIGHT - 5 * SCALE_HEIGHT,
+                  LABEL_HEIGHT + 12 * SCALE_HEIGHT
                 ]
                 : [
-                  LABEL_HEIGHT - 5 * SCALE_RATIO_HEIGHT_BASIS * 2.75,
-                  LABEL_HEIGHT + 12 * SCALE_RATIO_HEIGHT_BASIS * 0.7
+                  LABEL_HEIGHT - 5 * SCALE_HEIGHT * 2.75,
+                  LABEL_HEIGHT + 12 * SCALE_HEIGHT * 0.7
                 ]
               })
             }}
@@ -86,8 +86,8 @@ export default class MyTextInputFloat extends BaseInput {
                 labelStyle,
                 style.textCaption,
                 {
-                  paddingBottom: 5 * SCALE_RATIO_HEIGHT_BASIS,
-                  paddingHorizontal: 20 * SCALE_RATIO_WIDTH_BASIS,
+                  paddingBottom: 5 * SCALE_HEIGHT,
+                  paddingHorizontal: 20 * SCALE_WIDTH,
                   fontSize: focusedAnim.interpolate({
                     inputRange: [0, 1],
                     outputRange: [14, 10]
@@ -125,8 +125,8 @@ export default class MyTextInputFloat extends BaseInput {
             color={iconColor}
             style={{
               position: 'absolute',
-              marginHorizontal: 20 * SCALE_RATIO_WIDTH_BASIS,
-              bottom: Platform.OS === 'ios' ? LABEL_HEIGHT : 5 * SCALE_RATIO_HEIGHT_BASIS,
+              marginHorizontal: 20 * SCALE_WIDTH,
+              bottom: Platform.OS === 'ios' ? LABEL_HEIGHT : 5 * SCALE_HEIGHT,
               right: focusedAnim.interpolate({
                 inputRange: [0, 1],
                 outputRange: [0, width + PADDING]
@@ -139,7 +139,7 @@ export default class MyTextInputFloat extends BaseInput {
                   })
                 }
               ],
-              fontSize: FS(16),
+              fontSize: FONTSIZE(16),
               backgroundColor: 'transparent'
             }}
           />
@@ -172,15 +172,15 @@ const styles = StyleSheet.create({
     fontFamily: 'Helvetica Neue',
     // fontWeight: '600',
     color: '#9297D3',
-    fontSize: FS(12)
+    fontSize: FONTSIZE(12)
   },
   textInput: {
     position: 'absolute',
     bottom: 0,
     left: 0,
-    paddingTop: -5 * SCALE_RATIO_HEIGHT_BASIS,
-    paddingHorizontal: 20 * SCALE_RATIO_WIDTH_BASIS,
+    paddingTop: -5 * SCALE_HEIGHT,
+    paddingHorizontal: 20 * SCALE_WIDTH,
     color: '#707070',
-    fontSize: FS(14)
+    fontSize: FONTSIZE(14)
   }
 });

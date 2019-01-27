@@ -16,10 +16,10 @@ import MaterialCommunityIcons from 'react-native-vector-icons/dist/MaterialCommu
 import MaterialIcons from 'react-native-vector-icons/dist/MaterialIcons';
 import SimpleLineIcons from 'react-native-vector-icons/dist/SimpleLineIcons';
 import {
-  FS,
+  FONTSIZE,
   NEW_SCALE_RATIO,
-  SCALE_RATIO_HEIGHT_BASIS,
-  SCALE_RATIO_WIDTH_BASIS
+  SCALE_HEIGHT,
+  SCALE_WIDTH
 } from '../constants/Constants';
 import style from '../constants/style';
 // import isEqual from 'lodash.isequal';
@@ -101,7 +101,7 @@ export default class MyButton extends Component {
       return (
         <Ionicons
           name={icon}
-          size={(style && style.width) || 16 * SCALE_RATIO_WIDTH_BASIS}
+          size={(style && style.width) || 16 * SCALE_WIDTH}
           style={style}
           color={this.props.outline ? '#AE92D3' : '#fff'}
         />
@@ -111,7 +111,7 @@ export default class MyButton extends Component {
       return (
         <MaterialIcons
           name={icon}
-          size={(style && style.width) || 16 * SCALE_RATIO_WIDTH_BASIS}
+          size={(style && style.width) || 16 * SCALE_WIDTH}
           style={style}
           color={this.props.outline ? '#AE92D3' : '#fff'}
         />
@@ -121,7 +121,7 @@ export default class MyButton extends Component {
       return (
         <MaterialCommunityIcons
           name={icon}
-          size={(style && style.width) || 16 * SCALE_RATIO_WIDTH_BASIS}
+          size={(style && style.width) || 16 * SCALE_WIDTH}
           style={style}
           color={this.props.outline ? '#AE92D3' : '#fff'}
         />
@@ -131,7 +131,7 @@ export default class MyButton extends Component {
       return (
         <Feather
           name={icon}
-          size={(style && style.width) || 16 * SCALE_RATIO_WIDTH_BASIS}
+          size={(style && style.width) || 16 * SCALE_WIDTH}
           style={style}
           color={this.props.outline ? '#AE92D3' : '#fff'}
         />
@@ -141,7 +141,7 @@ export default class MyButton extends Component {
       return (
         <SimpleLineIcons
           name={icon}
-          size={(style && style.width) || 16 * SCALE_RATIO_WIDTH_BASIS}
+          size={(style && style.width) || 16 * SCALE_WIDTH}
           style={style}
           color={this.props.outline ? '#AE92D3' : '#fff'}
         />
@@ -183,12 +183,12 @@ export default class MyButton extends Component {
 
     const styles = StyleSheet.create({
       button: {
-        height: 33 * SCALE_RATIO_HEIGHT_BASIS,
+        height: 33 * SCALE_HEIGHT,
         flexDirection: 'row',
         alignItems: 'center',
-        borderRadius: (33 * SCALE_RATIO_HEIGHT_BASIS) / 2,
-        paddingVertical: 8 * SCALE_RATIO_HEIGHT_BASIS,
-        paddingHorizontal: 25 * SCALE_RATIO_WIDTH_BASIS,
+        borderRadius: (33 * SCALE_HEIGHT) / 2,
+        paddingVertical: 8 * SCALE_HEIGHT,
+        paddingHorizontal: 25 * SCALE_WIDTH,
         alignSelf: 'stretch',
         justifyContent: 'center',
         shadowColor: '#AE92D3',
@@ -204,7 +204,7 @@ export default class MyButton extends Component {
         borderColor: outline ? '#AE92D3' : '#fff'
       },
       textButton: {
-        fontSize: FS(12),
+        fontSize: FONTSIZE(12),
         textAlign: 'center',
         fontFamily: 'helveticaneue',
         color: outline ? '#AE92D3' : '#fff',
@@ -231,13 +231,13 @@ export default class MyButton extends Component {
           ]}
         >
           {leftIcon ? (
-            <View style={{ marginRight: 5 * SCALE_RATIO_WIDTH_BASIS }}>
+            <View style={{ marginRight: 5 * SCALE_WIDTH }}>
               {this.renderIcon(leftIconType, leftIcon, leftIconStyle)}
             </View>
           ) : null}
           {this._renderInnerText()}
           {rightIcon ? (
-            <View style={{ marginLeft: 5 * SCALE_RATIO_WIDTH_BASIS }}>
+            <View style={{ marginLeft: 5 * SCALE_WIDTH }}>
               {this.renderIcon(rightIconType, rightIcon, rightIconStyle)}
             </View>
           ) : null}
@@ -253,13 +253,13 @@ export default class MyButton extends Component {
         <TouchableNativeFeedback {...touchableProps}>
           <View style={[styles.button, this.props.style, , styleContent]}>
             {leftIcon ? (
-              <View style={{ marginRight: 5 * SCALE_RATIO_WIDTH_BASIS }}>
+              <View style={{ marginRight: 5 * SCALE_WIDTH }}>
                 {this.renderIcon(leftIconType, leftIcon, leftIconStyle)}
               </View>
             ) : null}
             {this._renderInnerText()}
             {rightIcon ? (
-              <View style={{ marginLeft: 5 * SCALE_RATIO_WIDTH_BASIS }}>
+              <View style={{ marginLeft: 5 * SCALE_WIDTH }}>
                 {this.renderIcon(rightIconType, rightIcon, rightIconStyle)}
               </View>
             ) : null}
@@ -271,13 +271,13 @@ export default class MyButton extends Component {
       <TouchableOpacity {...touchableProps}>
         <View style={[styles.button, this.props.style, styleContent]}>
           {leftIcon ? (
-            <View style={{ marginRight: 5 * SCALE_RATIO_WIDTH_BASIS }}>
+            <View style={{ marginRight: 5 * SCALE_WIDTH }}>
               {this.renderIcon(leftIconType, leftIcon, leftIconStyle)}
             </View>
           ) : null}
           {this._renderInnerText()}
           {rightIcon ? (
-            <View style={{ marginLeft: 5 * SCALE_RATIO_WIDTH_BASIS }}>
+            <View style={{ marginLeft: 5 * SCALE_WIDTH }}>
               {this.renderIcon(rightIconType, rightIcon, rightIconStyle)}
             </View>
           ) : null}
@@ -289,12 +289,12 @@ export default class MyButton extends Component {
 
 const styles = StyleSheet.create({
   button: {
-    height: 33 * SCALE_RATIO_HEIGHT_BASIS,
+    height: 33 * SCALE_HEIGHT,
     flexDirection: 'row',
     alignItems: 'center',
-    borderRadius: (33 * SCALE_RATIO_HEIGHT_BASIS) / 2,
-    paddingVertical: 8 * SCALE_RATIO_HEIGHT_BASIS,
-    paddingHorizontal: 25 * SCALE_RATIO_WIDTH_BASIS,
+    borderRadius: (33 * SCALE_HEIGHT) / 2,
+    paddingVertical: 8 * SCALE_HEIGHT,
+    paddingHorizontal: 25 * SCALE_WIDTH,
     alignSelf: 'stretch',
     justifyContent: 'center',
     shadowColor: '#AE92D3',
@@ -307,7 +307,7 @@ const styles = StyleSheet.create({
     // elevation: 5
   },
   textButton: {
-    fontSize: FS(12),
+    fontSize: FONTSIZE(12),
     textAlign: 'center',
     fontFamily: 'helveticaneue',
     fontWeight: '600',

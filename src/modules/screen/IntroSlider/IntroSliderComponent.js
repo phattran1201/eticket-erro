@@ -1,17 +1,21 @@
 /* eslint-disable no-underscore-dangle */
 import React from 'react';
-import { Dimensions, Platform, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import Carousel, { ParallaxImage } from 'react-native-snap-carousel';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {
-  FS,
-  SCALE_RATIO_HEIGHT_BASIS,
-  WIDTH_DEVICE,
-  HEIGHT_DEVICE
+  FONTSIZE,
+  SCALE_HEIGHT_PERCEN,
+  SCALE_HEIGHT,
+  SCALE_WIDTH_PERCEN,
+  IS_IOS,
+  SCALE_WIDTH,
+  WIDTH_DEVICE
 } from '../../../constants/Constants';
 import style from '../../../constants/style';
 import MyComponent from '../../view/MyComponent';
-import { getStatusBarHeight } from 'react-native-iphone-x-helper';
+import MyTouchableOpacity from '../../view/MyTouchableOpacity';
 
 export const dataIntroSlider = [
   {
@@ -47,25 +51,6 @@ export const dataIntroSlider = [
   }
 ];
 
-// const IS_IOS = Platform.OS === 'ios';
-// const { width: viewportWidth, height: viewportHeight } = Dimensions.get(
-//   'window'
-// );
-
-// function wp(percentage) {
-//   const value = (percentage * viewportWidth) / 100;
-//   return Math.round(value);
-// }
-
-// const slideHeight = viewportHeight * 0.6;
-// const slideWidth = wp(75);
-// const itemHorizontalMargin = wp(2);
-
-// export const sliderWidth = WIDTH_DEVICE();
-// export const itemWidth = slideWidth + itemHorizontalMargin * 2;
-
-// const 8 = 8;
-
 export default class IntroSliderComponent extends MyComponent {
   constructor(props) {
     super(props);
@@ -98,40 +83,47 @@ export default class IntroSliderComponent extends MyComponent {
           marginTop: getStatusBarHeight()
         }}
       >
-        <Carousel
-          data={dataIntroSlider}
-          renderItem={this._renderItem}
-          hasParallaxImages
-          sliderWidth={WIDTH_DEVICE()}
-          itemWidth={WIDTH_DEVICE('70%')}
-          firstItem={1}
-          inactiveSlideScale={0.94}
-          inactiveSlideOpacity={0.7}
-          // inactiveSlideShift={20}
-          containerCustomStyle={{
-            marginTop: 15,
-            overflow: 'visible'
-          }}
-          contentContainerCustomStyle={{
-            paddingTop: SCALE_RATIO_HEIGHT_BASIS(25)
-          }}
-          loop
-          loopClonesPerSide={2}
-          autoplay
-          autoplayDelay={500}
-          autoplayInterval={3000}
-          onSnapToItem={index => this.setState({ activeSlide: index })}
-        />
         <View
           style={{
-            flex: 1,
-            backgroundColor: '#fafafa',
+            flex: 7,
+            justifyContent: 'center',
+            alignContent: 'center',
+            alignItems: 'center'
+          }}
+        >
+          <Carousel
+            data={dataIntroSlider}
+            renderItem={this._renderItem}
+            hasParallaxImages
+            sliderWidth={WIDTH_DEVICE}
+            itemWidth={SCALE_WIDTH_PERCEN(0.8)}
+            firstItem={1}
+            inactiveSlideScale={0.94}
+            inactiveSlideOpacity={0.7}
+            // inactiveSlideShift={20}
+            containerCustomStyle={{
+              overflow: 'visible',
+              paddingTop: SCALE_HEIGHT(30)
+            }}
+            loop
+            loopClonesPerSide={2}
+            autoplay
+            autoplayDelay={500}
+            autoplayInterval={3000}
+            onSnapToItem={index => this.setState({ activeSlide: index })}
+          />
+        </View>
+
+        <View
+          style={{
+            flex: 3,
             justifyContent: 'center'
           }}
         >
-          <Text style={style.text}>Connect with</Text>
+          <Text style={(style.text, style.textCenter)}>Connect with</Text>
           <View
             style={{
+              marginVertical: SCALE_HEIGHT(10),
               flexDirection: 'row',
               justifyContent: 'space-around',
               alignItems: 'center'
@@ -154,8 +146,12 @@ export default class IntroSliderComponent extends MyComponent {
               Login with Google
             </Icon.Button>
           </View>
-          <Text style={{ textAlign: 'center', fontSize: FS(12) }}>
-            Connect with
+          <Text style={(style.text, style.textCenter)}>
+            or {/* <MyTouchableOpacity> */}
+            <Text style={(style.text, { color: '#' })} onPress={() => {}}>
+              Use Your Account
+            </Text>
+            {/* </MyTouchableOpacity> */}
           </Text>
         </View>
       </View>
@@ -164,16 +160,16 @@ export default class IntroSliderComponent extends MyComponent {
 }
 export const styles = StyleSheet.create({
   slideInnerContainer: {
-    width: WIDTH_DEVICE('70%'),
-    height: HEIGHT_DEVICE(0.6),
-    paddingHorizontal: WIDTH_DEVICE(3),
+    width: SCALE_WIDTH_PERCEN(0.8),
+    height: SCALE_HEIGHT_PERCEN(0.6),
+    paddingHorizontal: SCALE_WIDTH(8),
     paddingBottom: 18 // needed for shadow
   },
   shadow: {
     position: 'absolute',
     top: 0,
-    left: WIDTH_DEVICE(3),
-    right: WIDTH_DEVICE(3),
+    left: SCALE_WIDTH(3),
+    right: SCALE_WIDTH(3),
     bottom: 18,
     shadowColor: 'black',
     shadowOpacity: 0.25,

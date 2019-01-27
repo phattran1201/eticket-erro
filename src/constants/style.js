@@ -2,22 +2,30 @@
 import { Platform, StyleSheet } from 'react-native';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import {
-  FS,
-  SCALE_RATIO_HEIGHT_BASIS,
-  SCALE_RATIO_WIDTH_BASIS,
+  FONTSIZE,
+  SCALE_HEIGHT,
+  SCALE_WIDTH,
   WIDTH_DEVICE,
   headerHeight
 } from './Constants';
 
+export const COLOR_PRIMARY = '#007AFF';
+export const COLOR_SECONDARY = '#111';
+export const FONT_NORMAL = 'helveticaneue';
+export const FONT_BOLD = 'helveticaneuebold';
+export const FONT_LIGHT = 'helveticaneuelight';
+export const FONT_MEDIUM = 'helveticaneuemedium';
+export const BORDER_RADIUS = 5;
+
 const style = StyleSheet.create({
   text: {
-    fontSize: FS(13),
+    fontSize: FONTSIZE(14),
     fontFamily: 'helveticaneue',
     color: '#707070',
     backgroundColor: 'transparent'
   },
   textCaption: {
-    fontSize: FS(10),
+    fontSize: FONTSIZE(12),
     fontFamily: 'helveticaneue',
     color: '#9297D3',
     backgroundColor: 'transparent'
@@ -27,12 +35,12 @@ const style = StyleSheet.create({
   },
   //Button
   button: {
-    height: 41 * SCALE_RATIO_HEIGHT_BASIS,
+    height: 41 * SCALE_HEIGHT,
     flexDirection: 'row',
     alignItems: 'center',
-    borderRadius: (41 * SCALE_RATIO_HEIGHT_BASIS) / 2,
-    paddingVertical: 8 * SCALE_RATIO_HEIGHT_BASIS,
-    paddingHorizontal: 25 * SCALE_RATIO_WIDTH_BASIS,
+    borderRadius: (41 * SCALE_HEIGHT) / 2,
+    paddingVertical: 8 * SCALE_HEIGHT,
+    paddingHorizontal: 25 * SCALE_WIDTH,
     alignSelf: 'stretch',
     justifyContent: 'center',
     shadowRadius: 5
@@ -41,21 +49,21 @@ const style = StyleSheet.create({
     position: 'absolute',
     justifyContent: 'center',
     alignItems: 'center',
-    height: 48 * SCALE_RATIO_HEIGHT_BASIS,
+    height: 48 * SCALE_HEIGHT,
     bottom: 0,
-    width: WIDTH_DEVICE(),
+    width: WIDTH_DEVICE,
     backgroundColor: '#AE92D3'
   },
   //textInput
   textInput: {
-    fontSize: FS(14),
+    fontSize: FONTSIZE(14),
     fontFamily: 'helveticaneue',
     color: '#9297D3',
     // fontWeight: '500',
     backgroundColor: 'transparent'
   },
   textButton: {
-    fontSize: FS(9),
+    fontSize: FONTSIZE(9),
     textAlign: 'left',
     fontFamily: 'helveticaneue',
     fontWeight: '500',
@@ -66,10 +74,10 @@ const style = StyleSheet.create({
     borderColor: Platform.OS === 'ios' ? '#AE92D330' : '#70707010',
     borderWidth: 1,
     backgroundColor: '#fff',
-    height: 43 * SCALE_RATIO_HEIGHT_BASIS,
-    borderRadius: (43 * SCALE_RATIO_HEIGHT_BASIS) / 2,
-    paddingVertical: 8 * SCALE_RATIO_HEIGHT_BASIS,
-    paddingHorizontal: 25 * SCALE_RATIO_WIDTH_BASIS,
+    height: 43 * SCALE_HEIGHT,
+    borderRadius: (43 * SCALE_HEIGHT) / 2,
+    paddingVertical: 8 * SCALE_HEIGHT,
+    paddingHorizontal: 25 * SCALE_WIDTH,
     shadowColor: '#AE92D3',
     shadowOffset: {
       width: 0,
@@ -94,7 +102,7 @@ const style = StyleSheet.create({
   },
   //header
   titleHeader: {
-    fontSize: FS(14),
+    fontSize: FONTSIZE(14),
     fontFamily: 'helveticaneue',
     color: '#AE92D3',
     fontWeight: 'bold',
@@ -104,7 +112,7 @@ const style = StyleSheet.create({
   header: {
     borderTopWidth: 0,
     height: headerHeight,
-    width: WIDTH_DEVICE(),
+    width: WIDTH_DEVICE,
     paddingTop: Platform.OS === 'ios' ? getStatusBarHeight(true) : 0,
     alignItems: 'center',
     flexDirection: 'row',
@@ -112,7 +120,7 @@ const style = StyleSheet.create({
   },
   //modal
   textModal: {
-    fontSize: FS(16),
+    fontSize: FONTSIZE(16),
     fontFamily: 'helveticaneue',
     color: '#9297D3',
     fontWeight: '600',
@@ -126,10 +134,10 @@ const style = StyleSheet.create({
     borderColor: Platform.OS === 'ios' ? '#AE92D330' : '#70707010',
     borderWidth: 1,
     backgroundColor: '#fff',
-    marginHorizontal: 10 * SCALE_RATIO_WIDTH_BASIS,
-    borderRadius: 15 * SCALE_RATIO_HEIGHT_BASIS,
-    paddingVertical: 12 * SCALE_RATIO_HEIGHT_BASIS,
-    paddingHorizontal: 20 * SCALE_RATIO_WIDTH_BASIS,
+    marginHorizontal: 10 * SCALE_WIDTH,
+    borderRadius: 15 * SCALE_HEIGHT,
+    paddingVertical: 12 * SCALE_HEIGHT,
+    paddingHorizontal: 20 * SCALE_WIDTH,
     shadowColor: '#AE92D3',
     shadowOffset: {
       width: 0,
@@ -141,7 +149,7 @@ const style = StyleSheet.create({
   },
 
   textNormal: {
-    fontSize: FS(14),
+    fontSize: FONTSIZE(14),
     fontFamily: 'helveticaneue',
     color: '#9297D3',
     backgroundColor: 'transparent'
@@ -150,11 +158,10 @@ const style = StyleSheet.create({
   viewIcon: {
     justifyContent: 'center',
     alignItems: 'center',
-    height: 42 * SCALE_RATIO_WIDTH_BASIS,
-    width: 42 * SCALE_RATIO_WIDTH_BASIS,
-    borderRadius: (42 * SCALE_RATIO_WIDTH_BASIS) / 2,
+    height: 42 * SCALE_WIDTH,
+    width: 42 * SCALE_WIDTH,
+    borderRadius: (42 * SCALE_WIDTH) / 2,
     backgroundColor: '#AE92D3'
   }
 });
-
 export default style;

@@ -2,7 +2,7 @@ import React from 'react';
 import { StatusBar, Text, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Icons from 'react-native-vector-icons/Feather';
-import { FS, SCALE_RATIO_WIDTH_BASIS } from '../../constants/Constants';
+import { FONTSIZE, SCALE_WIDTH } from '../../constants/Constants';
 import style from '../../constants/style';
 import MyComponent from './MyComponent';
 import STouchableOpacity from './STouchableOpacity';
@@ -16,9 +16,9 @@ export default class HeaderWithBackButtonComponent extends MyComponent {
           <StatusBar backgroundColor="#fff" barStyle="dark-content" />
           <STouchableOpacity
             onPress={onPress}
-            style={{ paddingHorizontal: 16 * SCALE_RATIO_WIDTH_BASIS }}
+            style={{ paddingHorizontal: 16 * SCALE_WIDTH }}
           >
-            <Icons name="arrow-left" size={FS(20)} color="#AE92D3" />
+            <Icons name="arrow-left" size={FONTSIZE(20)} color="#AE92D3" />
           </STouchableOpacity>
           <View
             style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
@@ -27,8 +27,8 @@ export default class HeaderWithBackButtonComponent extends MyComponent {
               {bodyTitle ? bodyTitle.toUpperCase() : ''}
             </Text>
           </View>
-          <View style={{ paddingHorizontal: 16 * SCALE_RATIO_WIDTH_BASIS }}>
-            <Icons name="arrow-right" size={FS(20)} color="transparent" />
+          <View style={{ paddingHorizontal: 16 * SCALE_WIDTH }}>
+            <Icons name="arrow-right" size={FONTSIZE(20)} color="transparent" />
           </View>
         </View>
         {noShadow ? null : (

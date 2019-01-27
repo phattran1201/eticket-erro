@@ -1,38 +1,21 @@
 import React from 'react';
-import {
-  Dimensions,
-  Image,
-  Platform,
-  StatusBar,
-  View,
-  TextInput,
-  Text
-} from 'react-native';
-// import LinearGradient from 'react-native-linear-gradient';
-import { getStatusBarHeight } from 'react-native-iphone-x-helper';
+import { Dimensions, Image, Text, TextInput, View } from 'react-native';
 import Feather from 'react-native-vector-icons/dist/Feather';
 import Ionicons from 'react-native-vector-icons/dist/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/dist/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/dist/MaterialIcons';
 import SimpleLineIcons from 'react-native-vector-icons/dist/SimpleLineIcons';
 import {
+  FONTSIZE,
   NEW_SCALE_RATIO,
-  NEW_SCALE_RATIO_HEIGHT_BASIS,
-  SCALE_RATIO,
-  SCALE_RATIO_HEIGHT_BASIS,
-  NEW_SCALE_RATIO_WIDTH_BASIS,
-  SCALE_RATIO_WIDTH_BASIS,
-  FS
+  SCALE_HEIGHT,
+  SCALE_WIDTH
 } from '../constants/Constants';
-import MyTouchableOpacity from '../modules/view/MyTouchableOpacity';
 import style from '../constants/style';
-import MyComponent from '../modules/view/MyComponent';
+import MyTouchableOpacity from '../modules/view/MyTouchableOpacity';
 import BaseInput from './BaseInput';
-// import { Dropdown } from 'react-native-material-dropdown';
 
-const width = Dimensions.get('window').width;
-
-export const height = 41 * SCALE_RATIO_WIDTH_BASIS;
+export const height = 41 * SCALE_WIDTH;
 
 class MyTextInput extends BaseInput {
   renderIcon(type, icon, style) {
@@ -40,7 +23,7 @@ class MyTextInput extends BaseInput {
       return (
         <Ionicons
           name={icon}
-          size={(style && style.width) || FS(20)}
+          size={(style && style.width) || FONTSIZE(20)}
           style={style}
           color="#AE92D3"
         />
@@ -50,7 +33,7 @@ class MyTextInput extends BaseInput {
       return (
         <MaterialIcons
           name={icon}
-          size={(style && style.width) || FS(20)}
+          size={(style && style.width) || FONTSIZE(20)}
           style={style}
           color="#AE92D3"
         />
@@ -60,7 +43,7 @@ class MyTextInput extends BaseInput {
       return (
         <MaterialCommunityIcons
           name={icon}
-          size={(style && style.width) || FS(20)}
+          size={(style && style.width) || FONTSIZE(20)}
           style={style}
           color="#AE92D3"
         />
@@ -70,7 +53,7 @@ class MyTextInput extends BaseInput {
       return (
         <Feather
           name={icon}
-          size={(style && style.width) || FS(20)}
+          size={(style && style.width) || FONTSIZE(20)}
           style={style}
           color="#AE92D3"
         />
@@ -80,7 +63,7 @@ class MyTextInput extends BaseInput {
       return (
         <SimpleLineIcons
           name={icon}
-          size={(style && style.width) || FS(20)}
+          size={(style && style.width) || FONTSIZE(20)}
           style={style}
           color="#AE92D3"
         />
@@ -152,9 +135,9 @@ class MyTextInput extends BaseInput {
             alignItems: 'center',
             flexDirection: 'row',
             backgroundColor: '#fff',
-            marginBottom: 15 * SCALE_RATIO_HEIGHT_BASIS,
+            marginBottom: 15 * SCALE_HEIGHT,
             shadowRadius: height / 2,
-            paddingHorizontal: 10 * SCALE_RATIO_WIDTH_BASIS
+            paddingHorizontal: 10 * SCALE_WIDTH
           }
         ]}
       >
@@ -173,8 +156,8 @@ class MyTextInput extends BaseInput {
               {
                 flex: 1,
                 color: '#9297D3',
-                paddingLeft: 5 * SCALE_RATIO_WIDTH_BASIS,
-                marginBottom: -2 * SCALE_RATIO_HEIGHT_BASIS
+                paddingLeft: 5 * SCALE_WIDTH,
+                marginBottom: -2 * SCALE_HEIGHT
               }
             ]}
           >
@@ -194,8 +177,8 @@ class MyTextInput extends BaseInput {
             style.textInput,
             {
               flex: 1,
-              paddingRight: 5 * SCALE_RATIO_WIDTH_BASIS,
-              marginBottom: -5 * SCALE_RATIO_HEIGHT_BASIS
+              paddingRight: 5 * SCALE_WIDTH,
+              marginBottom: -5 * SCALE_HEIGHT
             }
           ]}
           value={value}
