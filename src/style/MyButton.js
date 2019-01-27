@@ -24,7 +24,7 @@ import {
 import style from '../constants/style';
 // import isEqual from 'lodash.isequal';
 
-export default class MyButton extends Component {
+class MyButton extends Component {
   static propTypes = {
     textStyle: Text.propTypes.style,
     disabledStyle: Text.propTypes.style,
@@ -319,3 +319,4 @@ const styles = StyleSheet.create({
     opacity: 0.5
   }
 });
+export default MyButton;

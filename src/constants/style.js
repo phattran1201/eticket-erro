@@ -14,6 +14,8 @@ export const COLOR_SECONDARY = '#FFA555';
 export const COLOR_TERTIARY = '#224466';
 export const COLOR_TEXT = '#333333';
 export const COLOR_TEXT_SECONDARY = '#707070';
+export const COLOR_TEXT_BUTTON = '#FFFFFF';
+export const COLOR_TEXT_BUTTON_OUTLINE = '#333333';
 
 export const FONT_LIGHT = 'helveticaneuelight';
 export const FONT_NORMAL = 'helveticaneue';
@@ -21,20 +23,31 @@ export const FONT_MEDIUM = 'helveticaneuemedium';
 export const FONT_BOLD = 'helveticaneuebold';
 
 const style = StyleSheet.create({
+  center: {
+    justifyContent: 'center',
+    alignContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center'
+  },
   text: {
     fontSize: FONTSIZE(14),
     fontFamily: 'helveticaneue',
-    color: '#707070',
-    backgroundColor: 'transparent'
+    color: COLOR_TEXT
   },
   textCaption: {
     fontSize: FONTSIZE(12),
     fontFamily: 'helveticaneue',
-    color: '#9297D3',
-    backgroundColor: 'transparent'
+    color: COLOR_TEXT_SECONDARY
   },
   textCenter: {
     textAlign: 'center'
+  },
+  textButton: {
+    fontSize: FONTSIZE(14),
+    fontFamily: 'helveticaneuemedium',
+    color: COLOR_TEXT_BUTTON,
+    textTransform: 'uppercase',
+    paddingHorizontal: SCALE_WIDTH(30)
   },
   //Button
   button: {
@@ -63,13 +76,6 @@ const style = StyleSheet.create({
     fontFamily: 'helveticaneue',
     color: '#9297D3',
     // fontWeight: '500',
-    backgroundColor: 'transparent'
-  },
-  textButton: {
-    fontSize: FONTSIZE(9),
-    textAlign: 'left',
-    fontFamily: 'helveticaneue',
-    fontWeight: '500',
     backgroundColor: 'transparent'
   },
   viewInput: {

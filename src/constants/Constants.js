@@ -13,7 +13,6 @@ export const IS_IOS = Platform.OS === 'ios';
 export const IS_ANDROID = Platform.OS === 'android';
 const defaultWidth = WIDTH_DEVICE / 375;
 const defaultHeight = HEIGHT_DEVICE / 667;
-export const HEADER_HEIGHT = SCALE_HEIGHT(40) + getStatusBarHeight();
 //Scale ratio
 export const SCALE_WIDTH = (scaleWidth = 100) =>
   Math.round(PixelRatio.roundToNearestPixel(scaleWidth * defaultWidth));
@@ -36,6 +35,8 @@ export const FONTSIZE = (size = 14) => {
   }
   return Math.round(PixelRatio.roundToNearestPixel(fontSize)) - 2;
 };
+
+export const HEADER_HEIGHT = SCALE_HEIGHT(40) + getStatusBarHeight();
 
 console.log('TCL: WIDTH_DEVICE', WIDTH_DEVICE);
 

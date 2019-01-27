@@ -12,8 +12,13 @@ import {
   SCALE_WIDTH_PERCEN,
   WIDTH_DEVICE
 } from '../../../constants/Constants';
-import style from '../../../constants/style';
+import style, {
+  COLOR_TERTIARY,
+  COLOR_SECONDARY,
+  COLOR_PRIMARY
+} from '../../../constants/style';
 import MyComponent from '../../view/MyComponent';
+import MyButton from '../../../style/MyButton';
 
 export const dataIntroSlider = [
   {
@@ -76,18 +81,21 @@ export default class IntroSliderComponent extends MyComponent {
   render() {
     return (
       <View
-        style={{
-          flex: 1,
-          marginTop: getStatusBarHeight()
-        }}
+        style={[
+          style.center,
+          {
+            flex: 1,
+            marginTop: getStatusBarHeight()
+          }
+        ]}
       >
         <View
-          style={{
-            flex: 7,
-            justifyContent: 'center',
-            alignContent: 'center',
-            alignItems: 'center'
-          }}
+          style={[
+            style.center,
+            {
+              flex: 7
+            }
+          ]}
         >
           <Carousel
             data={dataIntroSlider}
@@ -113,40 +121,47 @@ export default class IntroSliderComponent extends MyComponent {
         </View>
 
         <View
-          style={{
-            flex: 3,
-            justifyContent: 'center'
-          }}
+          style={[
+            style.center,
+            {
+              flex: 3
+            }
+          ]}
         >
           <Text style={(style.text, style.textCenter)}>Connect with</Text>
           <View
             style={{
-              marginVertical: SCALE_HEIGHT(10),
               flexDirection: 'row',
-              justifyContent: 'space-around',
-              alignItems: 'center'
+              justifyContent: 'center',
+              marginVertical: SCALE_HEIGHT(15)
+              // alignItems: 'center'
             }}
           >
+            <MyButton />
             <Icon.Button
               name="facebook"
               backgroundColor="#3b5998"
               onPress={() => {}}
-              style={{}}
+              style={style.textButton}
             >
-              Login with Facebook
+              Facebook
             </Icon.Button>
+            <View style={{ width: SCALE_WIDTH(30) }} />
             <Icon.Button
               name="google-plus"
               backgroundColor="#CB4036"
               onPress={() => {}}
-              style={{}}
+              style={style.textButton}
             >
-              Login with Google
+              Google
             </Icon.Button>
           </View>
           <Text style={(style.text, style.textCenter)}>
             or {/* <MyTouchableOpacity> */}
-            <Text style={(style.text, { color: '#' })} onPress={() => {}}>
+            <Text
+              style={[style.text, { color: COLOR_PRIMARY }]}
+              onPress={() => {}}
+            >
               Use Your Account
             </Text>
             {/* </MyTouchableOpacity> */}
