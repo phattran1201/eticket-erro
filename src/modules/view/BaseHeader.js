@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dimensions, Image, StatusBar, View } from 'react-native';
+import { Image, StatusBar, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Feather from 'react-native-vector-icons/dist/Feather';
 import Ionicons from 'react-native-vector-icons/dist/Ionicons';
@@ -19,8 +19,8 @@ import {
 import style from '../../constants/style';
 import MyComponent from './MyComponent';
 import Dropdown from './MyDropDown/dropdown';
-import STouchableOpacity from './STouchableOpacity';
-// import IconMessageAndBadgeComponent from './IconMessageAndBadgeComponent';
+import MyTouchableOpacity from './MyTouchableOpacity';
+import IconMessageAndBadgeComponent from './IconMessageAndBadgeComponent';
 
 class BaseHeader extends MyComponent {
   renderIcon(type, icon, styleIcon) {
@@ -130,27 +130,12 @@ class BaseHeader extends MyComponent {
       btnRightDisabled,
       btnRightStyle,
 
-      btnSecondRightStyle,
-      btnSecondRightVisible,
-      btnSecondRightDisabled,
-      secondRightIcon,
-      secondRightIconType,
-      onSecondRightPress,
-      secondRightIconStyle,
-
       rightIcon2,
       rightIconType2,
       onRightPress2,
       btnRightDisabled2,
       rightIconStyle2,
       btnRightStyle2,
-      btnSecondRightStyle2,
-      btnSecondRightVisible2,
-      btnSecondRightDisabled2,
-      secondRightIcon2,
-      secondRightIconType2,
-      onSecondRightPress2,
-      secondRightIconStyle2,
 
       rightIcon3,
       rightIconType3,
@@ -158,13 +143,6 @@ class BaseHeader extends MyComponent {
       btnRightDisabled3,
       rightIconStyle3,
       btnRightStyle3,
-      btnSecondRightStyle3,
-      btnSecondRightVisible3,
-      btnSecondRightDisabled3,
-      secondRightIcon3,
-      secondRightIconType3,
-      onSecondRightPress3,
-      secondRightIconStyle3,
 
       rightIconMenu,
       dataMenu,
@@ -180,7 +158,7 @@ class BaseHeader extends MyComponent {
         <View style={[style.header, styleContent]}>
           <StatusBar backgroundColor="#fff" barStyle="dark-content" />
           {leftIcon ? (
-            <STouchableOpacity
+            <MyTouchableOpacity
               onPress={() => {
                 this.onLeftPressTimeout = setTimeout(() => {
                   if (onLeftPress) onLeftPress();
@@ -189,10 +167,14 @@ class BaseHeader extends MyComponent {
               style={{ paddingHorizontal: 16 * SCALE_WIDTH }}
             >
               {this.renderIcon(leftIconType, leftIcon, leftIconStyle)}
-            </STouchableOpacity>
+            </MyTouchableOpacity>
           ) : (
             <View style={{ paddingHorizontal: 16 * SCALE_WIDTH }}>
-              <Feather name="arrow-left" size={FONTSIZE(20)} color="transparent" />
+              <Feather
+                name="arrow-left"
+                size={FONTSIZE(20)}
+                color="transparent"
+              />
             </View>
           )}
 
@@ -214,7 +196,11 @@ class BaseHeader extends MyComponent {
           rightIcon3 ||
           rightIconMenu ? null : (
             <View style={{ paddingHorizontal: 16 * SCALE_WIDTH }}>
-              <Feather name="arrow-right" size={FONTSIZE(20)} color="transparent" />
+              <Feather
+                name="arrow-right"
+                size={FONTSIZE(20)}
+                color="transparent"
+              />
             </View>
           )}
 
@@ -226,7 +212,7 @@ class BaseHeader extends MyComponent {
                   containerStyle={{ marginRight: 16 * SCALE_WIDTH }}
                 />
               ) : (
-                <STouchableOpacity
+                <MyTouchableOpacity
                   disabled={btnRightDisabled}
                   onPress={() => {
                     this.onRightPressTimeout = setTimeout(() => {
@@ -240,13 +226,13 @@ class BaseHeader extends MyComponent {
                   }
                 >
                   {this.renderIcon(rightIconType, rightIcon, rightIconStyle)}
-                </STouchableOpacity>
+                </MyTouchableOpacity>
               )}
             </View>
           ) : null}
 
           {rightIcon2 ? (
-            <STouchableOpacity
+            <MyTouchableOpacity
               disabled={btnRightDisabled2}
               onPress={() => {
                 this.onRightPressTimeout2 = setTimeout(() => {
@@ -260,11 +246,11 @@ class BaseHeader extends MyComponent {
               }
             >
               {this.renderIcon(rightIconType2, rightIcon2, rightIconStyle2)}
-            </STouchableOpacity>
+            </MyTouchableOpacity>
           ) : null}
 
           {rightIcon3 ? (
-            <STouchableOpacity
+            <MyTouchableOpacity
               disabled={btnRightDisabled3}
               onPress={() => {
                 this.onRightPressTimeout3 = setTimeout(() => {
@@ -278,7 +264,7 @@ class BaseHeader extends MyComponent {
               }
             >
               {this.renderIcon(rightIconType3, rightIcon3, rightIconStyle3)}
-            </STouchableOpacity>
+            </MyTouchableOpacity>
           ) : null}
 
           {rightIconMenu ? (

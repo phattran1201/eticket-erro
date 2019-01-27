@@ -1,26 +1,27 @@
+/* eslint-disable no-nested-ternary */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-param-reassign */
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 import {
-  Text,
-  View,
-  FlatList,
   Animated,
-  Modal,
-  TouchableWithoutFeedback,
   Dimensions,
-  Platform,
-  ViewPropTypes,
+  FlatList,
   I18nManager,
-  ScrollView
+  Modal,
+  Platform,
+  ScrollView,
+  Text,
+  TouchableWithoutFeedback,
+  View,
+  ViewPropTypes
 } from 'react-native';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Ripple from 'react-native-material-ripple';
 import { TextField } from 'react-native-material-textfield';
-
+import { NEW_SCALE_RATIO } from '../../../../constants/Constants';
+import MyTouchableOpacity from '../../MyTouchableOpacity';
 import DropdownItem from '../item';
 import styles from './styles';
-import { NEW_SCALE_RATIO } from '../../../../constants/Constants';
-import STouchableOpacity from '../../STouchableOpacity';
 
 export default class Dropdown extends PureComponent {
   static defaultProps = {
@@ -30,20 +31,20 @@ export default class Dropdown extends PureComponent {
 
     data: [],
 
-    valueExtractor: ({ value } = {}, index) => value,
-    labelExtractor: ({ label } = {}, index) => label,
+    valueExtractor: ({ value } = {}) => value,
+    labelExtractor: ({ label } = {}) => label,
     propsExtractor: () => null,
 
     absoluteRTLLayout: false,
 
     dropdownOffset: {
       top: 32,
-      left: 0,
+      left: 0
     },
 
     dropdownMargins: {
       min: 8,
-      max: 16,
+      max: 16
     },
 
     rippleCentered: false,
@@ -53,7 +54,7 @@ export default class Dropdown extends PureComponent {
       top: 16,
       right: 0,
       bottom: -8,
-      left: 0,
+      left: 0
     },
 
     rippleOpacity: 0.54,
@@ -76,10 +77,10 @@ export default class Dropdown extends PureComponent {
       'portrait-upside-down',
       'landscape',
       'landscape-left',
-      'landscape-right',
+      'landscape-right'
     ],
 
-    useNativeDriver: false,
+    useNativeDriver: false
   };
 
   static propTypes = {
@@ -87,10 +88,7 @@ export default class Dropdown extends PureComponent {
 
     disabled: PropTypes.bool,
 
-    value: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]),
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
     data: PropTypes.arrayOf(PropTypes.object),
 
@@ -102,12 +100,12 @@ export default class Dropdown extends PureComponent {
 
     dropdownOffset: PropTypes.shape({
       top: PropTypes.number.isRequired,
-      left: PropTypes.number.isRequired,
+      left: PropTypes.number.isRequired
     }),
 
     dropdownMargins: PropTypes.shape({
       min: PropTypes.number.isRequired,
-      max: PropTypes.number.isRequired,
+      max: PropTypes.number.isRequired
     }),
 
     dropdownPosition: PropTypes.number,
@@ -120,7 +118,7 @@ export default class Dropdown extends PureComponent {
       top: PropTypes.number,
       right: PropTypes.number,
       bottom: PropTypes.number,
-      left: PropTypes.number,
+      left: PropTypes.number
     }),
 
     rippleOpacity: PropTypes.number,
@@ -156,7 +154,7 @@ export default class Dropdown extends PureComponent {
 
     supportedOrientations: PropTypes.arrayOf(PropTypes.string),
 
-    useNativeDriver: PropTypes.bool,
+    useNativeDriver: PropTypes.bool
   };
 
   constructor(props) {
@@ -188,18 +186,18 @@ export default class Dropdown extends PureComponent {
       opacity: new Animated.Value(0),
       selected: -1,
       modal: false,
-      value,
+      value
     };
+  }
+
+  componentDidMount() {
+    this.mounted = true;
   }
 
   componentWillReceiveProps({ value }) {
     if (value !== this.props.value) {
       this.setState({ value });
     }
-  }
-
-  componentDidMount() {
-    this.mounted = true;
   }
 
   componentWillUnmount() {
@@ -217,7 +215,7 @@ export default class Dropdown extends PureComponent {
       dropdownMargins: { min: minMargin, max: maxMargin },
       animationDuration,
       absoluteRTLLayout,
-      useNativeDriver,
+      useNativeDriver
     } = this.props;
 
     if (disabled) {
@@ -248,7 +246,7 @@ export default class Dropdown extends PureComponent {
 
     const dimensions = Dimensions.get('window');
 
-    this.container.measureInWindow((x, y, containerWidth, containerHeight) => {
+    this.container.measureInWindow((x, y, containerWidth) => {
       const { opacity } = this.state;
 
       /* Adjust coordinates for relative layout in RTL locale */
@@ -256,13 +254,14 @@ export default class Dropdown extends PureComponent {
         x = dimensions.width - (x + containerWidth);
       }
 
-      const delay = Math.max(0, rippleDuration - animationDuration - (Date.now() - timestamp));
+      const delay = Math.max(
+        0,
+        rippleDuration - animationDuration - (Date.now() - timestamp)
+      );
       const selected = this.selectedIndex();
 
       let leftInset;
-      let left = x
-        + dropdownOffset.left
-        - maxMargin;
+      let left = x + dropdownOffset.left - maxMargin;
 
       if (left > minMargin) {
         leftInset = maxMargin;
@@ -281,9 +280,7 @@ export default class Dropdown extends PureComponent {
         rightInset = minMargin;
       }
 
-      const top = y
-        + dropdownOffset.top
-        - itemPadding;
+      const top = y + dropdownOffset.top - itemPadding;
 
       this.setState({
         modal: true,
@@ -292,30 +289,28 @@ export default class Dropdown extends PureComponent {
         left,
         leftInset,
         rightInset,
-        selected,
+        selected
       });
 
-      setTimeout((() => {
+      setTimeout(() => {
         if (this.mounted) {
           this.resetScrollOffset();
 
-          Animated
-            .timing(opacity, {
-              duration: animationDuration,
-              toValue: 1,
-              useNativeDriver,
-            })
-            .start(() => {
-              if (this.mounted && Platform.OS === 'ios') {
-                // let { flashScrollIndicators } = this.scroll || {};
+          Animated.timing(opacity, {
+            duration: animationDuration,
+            toValue: 1,
+            useNativeDriver
+          }).start(() => {
+            if (this.mounted && Platform.OS === 'ios') {
+              // let { flashScrollIndicators } = this.scroll || {};
 
-                if (typeof flashScrollIndicators === 'function') {
-                  // flashScrollIndicators.call(this.scroll);
-                }
+              if (typeof flashScrollIndicators === 'function') {
+                // flashScrollIndicators.call(this.scroll);
               }
-            });
+            }
+          });
         }
-      }), delay);
+      }, delay);
     });
   }
 
@@ -323,36 +318,27 @@ export default class Dropdown extends PureComponent {
     const { onBlur, animationDuration, useNativeDriver } = this.props;
     const { opacity } = this.state;
 
-    Animated
-      .timing(opacity, {
-        duration: animationDuration,
-        toValue: 0,
-        useNativeDriver,
-      })
-      .start(() => {
-        this.focused = false;
+    Animated.timing(opacity, {
+      duration: animationDuration,
+      toValue: 0,
+      useNativeDriver
+    }).start(() => {
+      this.focused = false;
 
-        if (typeof onBlur === 'function') {
-          onBlur();
-        }
+      if (typeof onBlur === 'function') {
+        onBlur();
+      }
 
-        if (this.mounted) {
-          this.setState({ value, modal: false });
-        }
-      });
+      if (this.mounted) {
+        this.setState({ value, modal: false });
+      }
+    });
   }
 
   onSelect(index) {
-    const {
-      data,
-      valueExtractor,
-      onChangeText,
-      animationDuration,
-      rippleDuration,
-    } = this.props;
+    const { data, valueExtractor, onChangeText } = this.props;
 
     const value = valueExtractor(data[index], index);
-    const delay = Math.max(0, rippleDuration - animationDuration);
 
     if (typeof onChangeText === 'function') {
       // onChangeText(value, index, data);
@@ -379,8 +365,9 @@ export default class Dropdown extends PureComponent {
     const { value } = this.state;
     const { data, valueExtractor } = this.props;
 
-    return data
-      .findIndex((item, index) => item != null && value === valueExtractor(item, index));
+    return data.findIndex(
+      (item, index) => item != null && value === valueExtractor(item, index)
+    );
   }
 
   selectedItem() {
@@ -410,12 +397,8 @@ export default class Dropdown extends PureComponent {
   }
 
   rippleInsets() {
-    const {
-      top = 16,
-      right = 0,
-      bottom = -8,
-      left = 0,
-    } = this.props.rippleInsets || {};
+    const { top = 16, right = 0, bottom = -8, left = 0 } =
+      this.props.rippleInsets || {};
 
     return { top, right, bottom, left };
   }
@@ -485,7 +468,7 @@ export default class Dropdown extends PureComponent {
       renderBase,
       labelExtractor,
       dropdownOffset,
-      renderAccessory = this.renderAccessory,
+      renderAccessory = this.renderAccessory
     } = this.props;
 
     const index = this.selectedIndex();
@@ -503,17 +486,15 @@ export default class Dropdown extends PureComponent {
       return renderBase({ ...props, title, value, renderAccessory });
     }
 
-    title = title == null || typeof title === 'string' ?
-      title :
-      String(title);
+    title = title == null || typeof title === 'string' ? title : String(title);
 
     return (
       <TextField
-        label=''
-        labelHeight={dropdownOffset.top - Platform.select({ ios: 1, android: 2 })}
-
+        label=""
+        labelHeight={
+          dropdownOffset.top - Platform.select({ ios: 1, android: 2 })
+        }
         {...props}
-
         value={title}
         editable={false}
         onChangeText={undefined}
@@ -529,7 +510,7 @@ export default class Dropdown extends PureComponent {
       rippleOpacity,
       rippleDuration,
       rippleCentered,
-      rippleSequential,
+      rippleSequential
     } = this.props;
 
     const { bottom, ...insets } = this.rippleInsets();
@@ -537,7 +518,7 @@ export default class Dropdown extends PureComponent {
       ...insets,
 
       height: this.itemSize() - bottom,
-      position: 'absolute',
+      position: 'absolute'
     };
 
     return (
@@ -586,40 +567,36 @@ export default class Dropdown extends PureComponent {
       itemTextStyle,
       rippleOpacity,
       rippleDuration,
-      shadeOpacity,
+      shadeOpacity
     } = this.props;
 
     let props = propsExtractor(item, index);
 
-    const { style, disabled }
-      = props
-      = {
-        rippleDuration,
-        rippleOpacity,
-        rippleColor: baseColor,
+    const { style, disabled } = (props = {
+      rippleDuration,
+      rippleOpacity,
+      rippleColor: baseColor,
 
-        shadeColor: baseColor,
-        shadeOpacity,
+      shadeColor: baseColor,
+      shadeOpacity,
 
-        ...props,
+      ...props,
 
-        onPress: this.onSelect,
-      };
+      onPress: this.onSelect
+    });
 
     const value = valueExtractor(item, index);
     const label = labelExtractor(item, index);
 
-    const title = label == null ?
-      value :
-      label;
+    const title = label == null ? value : label;
 
-    const color = disabled ?
-      disabledItemColor :
-      ~selected ?
-        index === selected ?
-          selectedItemColor :
-          itemColor :
-        selectedItemColor;
+    const color = disabled
+      ? disabledItemColor
+      : ~selected
+      ? index === selected
+        ? selectedItemColor
+        : itemColor
+      : selectedItemColor;
 
     const textStyle = { color, fontSize };
 
@@ -628,8 +605,8 @@ export default class Dropdown extends PureComponent {
       {
         height: this.itemSize(),
         paddingLeft: leftInset,
-        paddingRight: rightInset,
-      },
+        paddingRight: rightInset
+      }
     ];
 
     return (
@@ -666,21 +643,15 @@ export default class Dropdown extends PureComponent {
       ...props
     } = this.props;
 
-    const {
-      data,
-      disabled,
-      itemPadding,
-      dropdownPosition,
-    } = props;
+    const { data, disabled, itemPadding, dropdownPosition } = props;
 
-    const { left, top, width, opacity, selected, modal } = this.state;
+    const { left, top, opacity, selected, modal } = this.state;
 
     const itemCount = data.length;
     const visibleItemCount = this.visibleItemCount();
     const tailItemCount = this.tailItemCount();
     const itemSize = this.itemSize();
 
-    const height = 2 * itemPadding + itemSize * visibleItemCount;
     let translateY = -itemPadding;
 
     if (dropdownPosition == null) {
@@ -694,16 +665,17 @@ export default class Dropdown extends PureComponent {
 
         default:
           if (selected >= itemCount - tailItemCount) {
-            translateY -= itemSize * (visibleItemCount - (itemCount - selected));
+            translateY -=
+              itemSize * (visibleItemCount - (itemCount - selected));
           } else {
             translateY -= itemSize;
           }
       }
     } else if (dropdownPosition < 0) {
-        translateY -= itemSize * (visibleItemCount + dropdownPosition);
-      } else {
-        translateY -= itemSize * dropdownPosition;
-      }
+      translateY -= itemSize * (visibleItemCount + dropdownPosition);
+    } else {
+      translateY -= itemSize * dropdownPosition;
+    }
 
     const overlayStyle = { opacity };
 
@@ -712,7 +684,7 @@ export default class Dropdown extends PureComponent {
       // height,
       top,
       left: left - 30,
-      transform: [{ translateY }],
+      transform: [{ translateY }]
     };
 
     const touchableProps = {
@@ -723,12 +695,16 @@ export default class Dropdown extends PureComponent {
       testID,
       nativeID,
       accessible,
-      accessibilityLabel,
+      accessibilityLabel
     };
 
     return (
-      <View onLayout={this.onLayout} ref={this.updateContainerRef} style={containerStyle}>
-        <STouchableOpacity
+      <View
+        onLayout={this.onLayout}
+        ref={this.updateContainerRef}
+        style={containerStyle}
+      >
+        <MyTouchableOpacity
           {...touchableProps}
           style={[{ padding: 3 * NEW_SCALE_RATIO }, this.props.style]}
         >
@@ -737,7 +713,7 @@ export default class Dropdown extends PureComponent {
             {this.renderRipple()}
           </View> */}
           {this.props.children}
-        </STouchableOpacity>
+        </MyTouchableOpacity>
 
         <Modal
           visible={modal}
@@ -751,7 +727,12 @@ export default class Dropdown extends PureComponent {
             onResponderRelease={this.blur}
           >
             <View
-              style={[styles.picker, pickerStyle, pickerStyleOverrides, { overflow: 'hidden' }]}
+              style={[
+                styles.picker,
+                pickerStyle,
+                pickerStyleOverrides,
+                { overflow: 'hidden' }
+              ]}
               onStartShouldSetResponder={() => true}
             >
               <FlatList

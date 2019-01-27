@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dimensions, Image, Text, TextInput, View } from 'react-native';
+import { Image, Text, TextInput, View } from 'react-native';
 import Feather from 'react-native-vector-icons/dist/Feather';
 import Ionicons from 'react-native-vector-icons/dist/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/dist/MaterialCommunityIcons';
@@ -18,13 +18,13 @@ import BaseInput from './BaseInput';
 export const height = 41 * SCALE_WIDTH;
 
 class MyTextInput extends BaseInput {
-  renderIcon(type, icon, style) {
+  renderIcon(type, icon, styleIcon) {
     if (type === 'Ionicons') {
       return (
         <Ionicons
           name={icon}
-          size={(style && style.width) || FONTSIZE(20)}
-          style={style}
+          size={(styleIcon && styleIcon.width) || FONTSIZE(20)}
+          style={styleIcon}
           color="#AE92D3"
         />
       );
@@ -33,8 +33,8 @@ class MyTextInput extends BaseInput {
       return (
         <MaterialIcons
           name={icon}
-          size={(style && style.width) || FONTSIZE(20)}
-          style={style}
+          size={(styleIcon && styleIcon.width) || FONTSIZE(20)}
+          style={styleIcon}
           color="#AE92D3"
         />
       );
@@ -43,8 +43,8 @@ class MyTextInput extends BaseInput {
       return (
         <MaterialCommunityIcons
           name={icon}
-          size={(style && style.width) || FONTSIZE(20)}
-          style={style}
+          size={(styleIcon && styleIcon.width) || FONTSIZE(20)}
+          style={styleIcon}
           color="#AE92D3"
         />
       );
@@ -53,8 +53,8 @@ class MyTextInput extends BaseInput {
       return (
         <Feather
           name={icon}
-          size={(style && style.width) || FONTSIZE(20)}
-          style={style}
+          size={(styleIcon && styleIcon.width) || FONTSIZE(20)}
+          style={styleIcon}
           color="#AE92D3"
         />
       );
@@ -63,16 +63,16 @@ class MyTextInput extends BaseInput {
       return (
         <SimpleLineIcons
           name={icon}
-          size={(style && style.width) || FONTSIZE(20)}
-          style={style}
+          size={(styleIcon && styleIcon.width) || FONTSIZE(20)}
+          style={styleIcon}
           color="#AE92D3"
         />
       );
     }
     if (type === 'Image') {
-      return <Image source={icon} style={style} />;
+      return <Image source={icon} style={styleIcon} />;
     }
-    return <View style={{ width: 13 * NEW_SCALE_RATIO }} />;
+    return <View style={{ width: FONTSIZE(20) }} />;
   }
 
   componentWillUnmount() {
@@ -122,7 +122,7 @@ class MyTextInput extends BaseInput {
       styleContent
     } = this.props;
 
-    const { width, focusedAnim, value } = this.state;
+    const { value } = this.state;
     const { noShadow } = this.props;
     return (
       <View

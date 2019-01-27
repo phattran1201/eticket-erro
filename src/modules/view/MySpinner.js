@@ -1,11 +1,11 @@
 import LottieView from 'lottie-react-native';
 import React from 'react';
-import { Dimensions, View } from 'react-native';
+import { View } from 'react-native';
 import Spinner from 'react-native-loading-spinner-overlay';
 import {
+  HEIGHT_DEVICE,
   SCALE_WIDTH,
-  WIDTH_DEVICE,
-  HEIGHT_DEVICE
+  WIDTH_DEVICE
 } from '../../constants/Constants';
 import strings from '../../constants/Strings';
 import MyComponent from './MyComponent';

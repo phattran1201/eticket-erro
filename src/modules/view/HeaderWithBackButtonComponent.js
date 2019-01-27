@@ -5,7 +5,7 @@ import Icons from 'react-native-vector-icons/Feather';
 import { FONTSIZE, SCALE_WIDTH } from '../../constants/Constants';
 import style from '../../constants/style';
 import MyComponent from './MyComponent';
-import STouchableOpacity from './STouchableOpacity';
+import MyTouchableOpacity from './MyTouchableOpacity';
 
 export default class HeaderWithBackButtonComponent extends MyComponent {
   render() {
@@ -14,12 +14,12 @@ export default class HeaderWithBackButtonComponent extends MyComponent {
       <View>
         <View style={[style.header]}>
           <StatusBar backgroundColor="#fff" barStyle="dark-content" />
-          <STouchableOpacity
+          <MyTouchableOpacity
             onPress={onPress}
             style={{ paddingHorizontal: 16 * SCALE_WIDTH }}
           >
             <Icons name="arrow-left" size={FONTSIZE(20)} color="#AE92D3" />
-          </STouchableOpacity>
+          </MyTouchableOpacity>
           <View
             style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
           >

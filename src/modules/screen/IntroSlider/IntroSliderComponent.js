@@ -5,17 +5,15 @@ import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import Carousel, { ParallaxImage } from 'react-native-snap-carousel';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {
-  FONTSIZE,
-  SCALE_HEIGHT_PERCEN,
-  SCALE_HEIGHT,
-  SCALE_WIDTH_PERCEN,
   IS_IOS,
+  SCALE_HEIGHT,
+  SCALE_HEIGHT_PERCEN,
   SCALE_WIDTH,
+  SCALE_WIDTH_PERCEN,
   WIDTH_DEVICE
 } from '../../../constants/Constants';
 import style from '../../../constants/style';
 import MyComponent from '../../view/MyComponent';
-import MyTouchableOpacity from '../../view/MyTouchableOpacity';
 
 export const dataIntroSlider = [
   {

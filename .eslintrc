@@ -2,6 +2,9 @@
     "extends": "rallycoding",
     "rules": {
         "no-mixed-operators": "off",
+        "no-underscore-dangle": [2, {
+            "allowAfterThis": true
+        }],
         "max-len": [
             "error",
             {

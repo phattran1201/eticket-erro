@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import {
   ActivityIndicator,
   Image,
@@ -28,7 +28,11 @@ export default class MyButton extends Component {
   static propTypes = {
     textStyle: Text.propTypes.style,
     disabledStyle: Text.propTypes.style,
-    children: PropTypes.oneOfType([PropTypes.string, PropTypes.node, PropTypes.element]),
+    children: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.node,
+      PropTypes.element
+    ]),
     testID: PropTypes.string,
     accessibilityLabel: PropTypes.string,
     activeOpacity: PropTypes.number,
@@ -49,14 +53,6 @@ export default class MyButton extends Component {
   };
 
   static isAndroid = Platform.OS === 'android';
-
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   if (!isEqual(nextProps, this.props)) {
-  //     return true;
-  //   }
-  //   return false;
-  // }
-
   _renderChildren() {
     const childElements = [];
     React.Children.forEach(this.props.children, item => {
@@ -96,13 +92,13 @@ export default class MyButton extends Component {
     return this._renderChildren();
   }
 
-  renderIcon(type, icon, style) {
+  renderIcon(type, icon, styleIcon) {
     if (type === 'Ionicons') {
       return (
         <Ionicons
           name={icon}
-          size={(style && style.width) || 16 * SCALE_WIDTH}
-          style={style}
+          size={(styleIcon && styleIcon.width) || FONTSIZE(20)}
+          style={styleIcon}
           color={this.props.outline ? '#AE92D3' : '#fff'}
         />
       );
@@ -111,8 +107,8 @@ export default class MyButton extends Component {
       return (
         <MaterialIcons
           name={icon}
-          size={(style && style.width) || 16 * SCALE_WIDTH}
-          style={style}
+          size={(styleIcon && styleIcon.width) || FONTSIZE(20)}
+          style={styleIcon}
           color={this.props.outline ? '#AE92D3' : '#fff'}
         />
       );
@@ -121,8 +117,8 @@ export default class MyButton extends Component {
       return (
         <MaterialCommunityIcons
           name={icon}
-          size={(style && style.width) || 16 * SCALE_WIDTH}
-          style={style}
+          size={(styleIcon && styleIcon.width) || FONTSIZE(20)}
+          style={styleIcon}
           color={this.props.outline ? '#AE92D3' : '#fff'}
         />
       );
@@ -131,8 +127,8 @@ export default class MyButton extends Component {
       return (
         <Feather
           name={icon}
-          size={(style && style.width) || 16 * SCALE_WIDTH}
-          style={style}
+          size={(styleIcon && styleIcon.width) || FONTSIZE(20)}
+          style={styleIcon}
           color={this.props.outline ? '#AE92D3' : '#fff'}
         />
       );
@@ -141,14 +137,14 @@ export default class MyButton extends Component {
       return (
         <SimpleLineIcons
           name={icon}
-          size={(style && style.width) || 16 * SCALE_WIDTH}
-          style={style}
+          size={(styleIcon && styleIcon.width) || FONTSIZE(20)}
+          style={styleIcon}
           color={this.props.outline ? '#AE92D3' : '#fff'}
         />
       );
     }
     if (type === 'Image') {
-      return <Image source={icon} style={style} />;
+      return <Image source={icon} style={styleIcon} />;
     }
     return <View style={{ width: 13 * NEW_SCALE_RATIO }} />;
   }
@@ -247,11 +243,13 @@ export default class MyButton extends Component {
 
     if (MyButton.isAndroid) {
       touchableProps = Object.assign(touchableProps, {
-        background: this.props.background || TouchableNativeFeedback.SelectableBackground()
+        background:
+          this.props.background ||
+          TouchableNativeFeedback.SelectableBackground()
       });
       return (
         <TouchableNativeFeedback {...touchableProps}>
-          <View style={[styles.button, this.props.style, , styleContent]}>
+          <View style={[styles.button, this.props.style, styleContent]}>
             {leftIcon ? (
               <View style={{ marginRight: 5 * SCALE_WIDTH }}>
                 {this.renderIcon(leftIconType, leftIcon, leftIconStyle)}
