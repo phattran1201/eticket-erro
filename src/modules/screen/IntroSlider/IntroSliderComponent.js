@@ -142,7 +142,7 @@ export default class IntroSliderComponent extends MyComponent {
               name="facebook"
               backgroundColor="#3b5998"
               onPress={() => {}}
-              style={style.textButton}
+              style={[style.textButton, style.button]}
             >
               Facebook
             </Icon.Button>
@@ -151,7 +151,7 @@ export default class IntroSliderComponent extends MyComponent {
               name="google-plus"
               backgroundColor="#CB4036"
               onPress={() => {}}
-              style={style.textButton}
+              style={[style.textButton, style.button]}
             >
               Google
             </Icon.Button>

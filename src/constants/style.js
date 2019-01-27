@@ -17,6 +17,8 @@ export const COLOR_TEXT_SECONDARY = '#707070';
 export const COLOR_TEXT_BUTTON = '#FFFFFF';
 export const COLOR_TEXT_BUTTON_OUTLINE = '#FF4D00';
 
+export const COLOR_TEXT_ERRO = '#ff190c';
+
 export const FONT_LIGHT = 'helveticaneuelight';
 export const FONT_NORMAL = 'helveticaneue';
 export const FONT_MEDIUM = 'helveticaneuemedium';
@@ -70,9 +72,7 @@ const style = StyleSheet.create({
   textInput: {
     fontSize: FONTSIZE(14),
     fontFamily: 'helveticaneue',
-    color: '#9297D3',
-    // fontWeight: '500',
-    backgroundColor: 'transparent'
+    color: COLOR_TERTIARY
   },
   viewInput: {
     flexDirection: 'row',

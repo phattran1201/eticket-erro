@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React from 'react';
 import {
   ActivityIndicator,
   Image,
@@ -15,14 +15,16 @@ import Ionicons from 'react-native-vector-icons/dist/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/dist/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/dist/MaterialIcons';
 import SimpleLineIcons from 'react-native-vector-icons/dist/SimpleLineIcons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { FONTSIZE, NEW_SCALE_RATIO, SCALE_WIDTH } from '../constants/Constants';
 import style, {
   COLOR_TEXT_BUTTON,
   COLOR_TEXT_BUTTON_OUTLINE
 } from '../constants/style';
+import MyComponent from '../modules/view/MyComponent';
 // import isEqual from 'lodash.isequal';
 
-class MyButton extends Component {
+class MyButton extends MyComponent {
   static propTypes = {
     textStyle: Text.propTypes.style,
     disabledStyle: Text.propTypes.style,
@@ -100,6 +102,18 @@ class MyButton extends Component {
     if (type === 'Ionicons') {
       return (
         <Ionicons
+          name={icon}
+          size={(styleIcon && styleIcon.width) || FONTSIZE(20)}
+          style={styleIcon}
+          color={
+            this.props.outline ? COLOR_TEXT_BUTTON_OUTLINE : COLOR_TEXT_BUTTON
+          }
+        />
+      );
+    }
+    if (type === 'FontAwesome') {
+      return (
+        <FontAwesome
           name={icon}
           size={(styleIcon && styleIcon.width) || FONTSIZE(20)}
           style={styleIcon}
