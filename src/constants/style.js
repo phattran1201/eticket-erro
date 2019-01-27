@@ -6,16 +6,19 @@ import {
   SCALE_HEIGHT,
   SCALE_WIDTH,
   WIDTH_DEVICE,
-  headerHeight
+  HEADER_HEIGHT
 } from './Constants';
 
-export const COLOR_PRIMARY = '#007AFF';
-export const COLOR_SECONDARY = '#111';
-export const FONT_NORMAL = 'helveticaneue';
-export const FONT_BOLD = 'helveticaneuebold';
+export const COLOR_PRIMARY = '#FF4D00';
+export const COLOR_SECONDARY = '#FFA555';
+export const COLOR_TERTIARY = '#224466';
+export const COLOR_TEXT = '#333333';
+export const COLOR_TEXT_SECONDARY = '#707070';
+
 export const FONT_LIGHT = 'helveticaneuelight';
+export const FONT_NORMAL = 'helveticaneue';
 export const FONT_MEDIUM = 'helveticaneuemedium';
-export const BORDER_RADIUS = 5;
+export const FONT_BOLD = 'helveticaneuebold';
 
 const style = StyleSheet.create({
   text: {
@@ -111,7 +114,7 @@ const style = StyleSheet.create({
   },
   header: {
     borderTopWidth: 0,
-    height: headerHeight,
+    height: HEADER_HEIGHT,
     width: WIDTH_DEVICE,
     paddingTop: Platform.OS === 'ios' ? getStatusBarHeight(true) : 0,
     alignItems: 'center',

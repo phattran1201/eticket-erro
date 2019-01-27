@@ -13,7 +13,7 @@ export const IS_IOS = Platform.OS === 'ios';
 export const IS_ANDROID = Platform.OS === 'android';
 const defaultWidth = WIDTH_DEVICE / 375;
 const defaultHeight = HEIGHT_DEVICE / 667;
-export const headerHeight = 48 * SCALE_HEIGHT + getStatusBarHeight();
+export const HEADER_HEIGHT = SCALE_HEIGHT(40) + getStatusBarHeight();
 //Scale ratio
 export const SCALE_WIDTH = (scaleWidth = 100) =>
   Math.round(PixelRatio.roundToNearestPixel(scaleWidth * defaultWidth));

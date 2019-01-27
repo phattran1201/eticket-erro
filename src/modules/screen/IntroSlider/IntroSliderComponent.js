@@ -94,7 +94,7 @@ export default class IntroSliderComponent extends MyComponent {
             renderItem={this._renderItem}
             hasParallaxImages
             sliderWidth={WIDTH_DEVICE}
-            itemWidth={SCALE_WIDTH_PERCEN(0.8)}
+            itemWidth={SCALE_WIDTH_PERCEN(80)}
             firstItem={1}
             inactiveSlideScale={0.94}
             inactiveSlideOpacity={0.7}
@@ -158,8 +158,8 @@ export default class IntroSliderComponent extends MyComponent {
 }
 export const styles = StyleSheet.create({
   slideInnerContainer: {
-    width: SCALE_WIDTH_PERCEN(0.8),
-    height: SCALE_HEIGHT_PERCEN(0.6),
+    width: SCALE_WIDTH_PERCEN(80),
+    height: SCALE_HEIGHT_PERCEN(60),
     paddingHorizontal: SCALE_WIDTH(8),
     paddingBottom: 18 // needed for shadow
   },
