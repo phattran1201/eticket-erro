@@ -10,9 +10,7 @@ export default class App extends MyComponent {
   render() {
     return (
       <Provider store={store}>
-        <View style={style}>
-          <AppNavigator />
-        </View>
+        <AppNavigator />
       </Provider>
     );
   }

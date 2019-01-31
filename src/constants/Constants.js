@@ -142,7 +142,7 @@ export const ROUTE_KEY = {
 };
 
 //URL & APIs
-export const BASE_URL = 'https://hitek.com.vn:6002/api/v1/';
+export const BASE_URL = 'https://eticket-vhu.herokuapp.com/api/v1/';
 export const SOCKET_URL = 'http://hitek.com.vn:6050'; //Non SSL
 export const PRODUCT_API = 'product';
 export const POST_API = 'post';

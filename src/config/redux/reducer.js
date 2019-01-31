@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import { persistReducer } from 'redux-persist';
 import { AsyncStorage } from 'react-native';
+import UserReducer from './reducers/userReducer';
 // import ProductReducer from './reducers/productReducer';
 // import PostReducer from './reducers/postReducer';
 // import UserReducer from './reducers/userReducer';
@@ -23,129 +24,129 @@ import { AsyncStorage } from 'react-native';
 // import BlockingReducer from './reducers/blockingReducer';
 
 const reducer = combineReducers({
-  //   post: persistReducer(
-  //     {
-  //       key: 'Post',
-  //       storage: AsyncStorage
-  //     },
-  //     PostReducer
-  //   ),
-  //   product: persistReducer(
-  //     {
-  //       key: 'Product',
-  //       storage: AsyncStorage
-  //     },
-  //     ProductReducer
-  //   ),
-  //   user: persistReducer(
-  //     {
-  //       key: 'User',
-  //       storage: AsyncStorage
-  //     },
-  //     UserReducer
-  //   ),
-  //   area: persistReducer(
-  //     {
-  //       key: 'Area',
-  //       storage: AsyncStorage
-  //     },
-  //     AreaReducer
-  //   ),
-  //   filter: persistReducer(
-  //     {
-  //       key: 'Filter',
-  //       storage: AsyncStorage
-  //     },
-  //     FilterReducer
-  //   ),
-  //   profileProduct: persistReducer(
-  //     {
-  //       key: 'ProfileProduct',
-  //       storage: AsyncStorage,
-  //       blacklist: ['listProductForUser']
-  //     },
-  //     profileProductReducer
-  //   ),
-  //   profilePost: persistReducer(
-  //     {
-  //       key: 'ProfilePost',
-  //       storage: AsyncStorage
-  //     },
-  //     profilePostReducer
-  //   ),
-  //   categoryFilter: persistReducer(
-  //     {
-  //       key: 'CategoryFilter',
-  //       storage: AsyncStorage
-  //     },
-  //     categoryFilterReducer
-  //   ),
-  //   notification: persistReducer(
-  //     {
-  //       key: 'Notification',
-  //       storage: AsyncStorage
-  //     },
-  //     NotificationReducer
-  //   ),
-  //   conversation: persistReducer(
-  //     {
-  //       key: 'Conversation',
-  //       storage: AsyncStorage
-  //     },
-  //     ConversationReducer
-  //   ),
-  //   transaction: persistReducer(
-  //     {
-  //       key: 'Transaction',
-  //       storage: AsyncStorage
-  //     },
-  //     TransactionReducer
-  //   ),
-  //   drawmoney: persistReducer(
-  //     {
-  //       key: 'Drawmoney',
-  //       storage: AsyncStorage
-  //     },
-  //     HistorydrawReducer
-  //   ),
-  //   wallet: persistReducer(
-  //     {
-  //       key: 'Wallet',
-  //       storage: AsyncStorage
-  //     },
-  //     historyTransactionReducer
-  //   ),
-  //   local: persistReducer(
-  //     {
-  //       key: 'Local',
-  //       storage: AsyncStorage
-  //     },
-  //     localReducer
-  //   ),
-  //   media: persistReducer(
-  //     {
-  //       key: 'media',
-  //       storage: AsyncStorage
-  //     },
-  //     mediaReducer
-  //   ),
-  //   group: persistReducer(
-  //     {
-  //       key: 'Group',
-  //       storage: AsyncStorage
-  //     },
-  //     groupReducer
-  //   ),
-  //   organization: persistReducer(
-  //     {
-  //       key: 'Organization',
-  //       storage: AsyncStorage
-  //     },
-  //     organizationReducer
-  //   ),
-  //   partners: PartnersReducer,
-  //   rating: RatingReducer,
-  //   blocking: BlockingReducer
+  // post: persistReducer(
+  //   {
+  //     key: 'Post',
+  //     storage: AsyncStorage
+  //   },
+  //   PostReducer
+  // ),
+  // product: persistReducer(
+  //   {
+  //     key: 'Product',
+  //     storage: AsyncStorage
+  //   },
+  //   ProductReducer
+  // ),
+  user: persistReducer(
+    {
+      key: 'User',
+      storage: AsyncStorage
+    },
+    UserReducer
+  )
+  // area: persistReducer(
+  //   {
+  //     key: 'Area',
+  //     storage: AsyncStorage
+  //   },
+  //   AreaReducer
+  // ),
+  // filter: persistReducer(
+  //   {
+  //     key: 'Filter',
+  //     storage: AsyncStorage
+  //   },
+  //   FilterReducer
+  // ),
+  // profileProduct: persistReducer(
+  //   {
+  //     key: 'ProfileProduct',
+  //     storage: AsyncStorage,
+  //     blacklist: ['listProductForUser']
+  //   },
+  //   profileProductReducer
+  // ),
+  // profilePost: persistReducer(
+  //   {
+  //     key: 'ProfilePost',
+  //     storage: AsyncStorage
+  //   },
+  //   profilePostReducer
+  // ),
+  // categoryFilter: persistReducer(
+  //   {
+  //     key: 'CategoryFilter',
+  //     storage: AsyncStorage
+  //   },
+  //   categoryFilterReducer
+  // ),
+  // notification: persistReducer(
+  //   {
+  //     key: 'Notification',
+  //     storage: AsyncStorage
+  //   },
+  //   NotificationReducer
+  // ),
+  // conversation: persistReducer(
+  //   {
+  //     key: 'Conversation',
+  //     storage: AsyncStorage
+  //   },
+  //   ConversationReducer
+  // ),
+  // transaction: persistReducer(
+  //   {
+  //     key: 'Transaction',
+  //     storage: AsyncStorage
+  //   },
+  //   TransactionReducer
+  // ),
+  // drawmoney: persistReducer(
+  //   {
+  //     key: 'Drawmoney',
+  //     storage: AsyncStorage
+  //   },
+  //   HistorydrawReducer
+  // ),
+  // wallet: persistReducer(
+  //   {
+  //     key: 'Wallet',
+  //     storage: AsyncStorage
+  //   },
+  //   historyTransactionReducer
+  // ),
+  // local: persistReducer(
+  //   {
+  //     key: 'Local',
+  //     storage: AsyncStorage
+  //   },
+  //   localReducer
+  // ),
+  // media: persistReducer(
+  //   {
+  //     key: 'media',
+  //     storage: AsyncStorage
+  //   },
+  //   mediaReducer
+  // ),
+  // group: persistReducer(
+  //   {
+  //     key: 'Group',
+  //     storage: AsyncStorage
+  //   },
+  //   groupReducer
+  // ),
+  // organization: persistReducer(
+  //   {
+  //     key: 'Organization',
+  //     storage: AsyncStorage
+  //   },
+  //   organizationReducer
+  // ),
+  // partners: PartnersReducer,
+  // rating: RatingReducer,
+  // blocking: BlockingReducer
 });
 
 export default reducer;
