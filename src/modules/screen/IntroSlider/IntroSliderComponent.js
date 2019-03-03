@@ -137,7 +137,6 @@ export default class IntroSliderComponent extends MyComponent {
               // alignItems: 'center'
             }}
           >
-            <MyButton />
             <Icon.Button
               name="facebook"
               backgroundColor="#3b5998"
