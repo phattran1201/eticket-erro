@@ -1,25 +1,5 @@
 import { AsyncStorage } from 'react-native';
 
-export const getDeviceInfo = async () => {
-  try {
-    const deviceInfo = await AsyncStorage.getItem('@deviceInfoEticket:key');
-    return deviceInfo !== null ? deviceInfo : '';
-  } catch (error) {
-    return '';
-  }
-};
-
-export const saveDeviceInfo = async (deviceInfo = '') => {
-  try {
-    await AsyncStorage.setItem(
-      '@deviceInfoEticket:key',
-      JSON.stringify(deviceInfo)
-    );
-  } catch (e) {
-    console.log('dauphaiphat: }catch -> e', e);
-  }
-};
-
 export const getListReadNotifications = async () => {
   try {
     const data = await AsyncStorage.getItem('@readnotifications:key');
@@ -110,7 +90,7 @@ export const setSubscribingTopics = async topics => {
 
 export const getCurrentLanguage = async () => {
   try {
-    const language = await AsyncStorage.getItem('@languageEticket:key');
+    const language = await AsyncStorage.getItem('@language3123:key');
     return language !== null ? language : 'vi';
   } catch (error) {
     return 'vi';
@@ -119,7 +99,7 @@ export const getCurrentLanguage = async () => {
 
 export const setCurrentLanguage = async (language = 'vi') => {
   try {
-    await AsyncStorage.setItem('@languageEticket:key', language);
+    await AsyncStorage.setItem('@language3123:key', language);
   } catch (e) {
     console.log(e);
   }
@@ -127,7 +107,7 @@ export const setCurrentLanguage = async (language = 'vi') => {
 
 export const getToken = async () => {
   try {
-    const token = await AsyncStorage.getItem('@tokenEticket:key');
+    const token = await AsyncStorage.getItem('@tokenRaovat21052018:key');
     return token !== null ? token : '';
   } catch (error) {
     return '';
@@ -136,7 +116,7 @@ export const getToken = async () => {
 
 export const saveToken = async (token = '') => {
   try {
-    await AsyncStorage.setItem('@tokenEticket:key', token);
+    await AsyncStorage.setItem('@tokenRaovat21052018:key', token);
   } catch (e) {
     console.log(e);
   }
@@ -145,7 +125,7 @@ export const saveToken = async (token = '') => {
 export const getAuthorizationString = async () => {
   try {
     const authorizationString = await AsyncStorage.getItem(
-      '@AuthorizationStringEticket:key'
+      '@AuthorizationStringApollo0206:key'
     );
     return authorizationString !== null ? authorizationString : '';
   } catch (error) {
@@ -156,7 +136,7 @@ export const getAuthorizationString = async () => {
 export const saveAuthorizationString = async (authorizationString = '') => {
   try {
     await AsyncStorage.setItem(
-      '@authorizationStringEticket:key',
+      '@AuthorizationStringApollo0206:key',
       authorizationString
     );
   } catch (e) {
@@ -166,7 +146,9 @@ export const saveAuthorizationString = async (authorizationString = '') => {
 
 export const getRefreshToken = async () => {
   try {
-    const refreshToken = await AsyncStorage.getItem('@refreshEticket:key');
+    const refreshToken = await AsyncStorage.getItem(
+      '@RefreshTokenApollo0206:key'
+    );
     return refreshToken !== null ? refreshToken : '';
   } catch (error) {
     return '';
@@ -175,7 +157,7 @@ export const getRefreshToken = async () => {
 
 export const saveRefreshToken = async (refreshToken = '') => {
   try {
-    await AsyncStorage.setItem('@refreshEticket:key', refreshToken);
+    await AsyncStorage.setItem('@RefreshTokenApollo0206:key', refreshToken);
   } catch (e) {
     console.log(e);
   }
@@ -183,7 +165,10 @@ export const saveRefreshToken = async (refreshToken = '') => {
 
 export const saveDataUser = async (data = null) => {
   try {
-    await AsyncStorage.setItem('@dataUserEticket:key', JSON.stringify(data));
+    await AsyncStorage.setItem(
+      '@dataUserRaovat01062018:key',
+      JSON.stringify(data)
+    );
   } catch (e) {
     console.log(e);
   }
@@ -191,7 +176,7 @@ export const saveDataUser = async (data = null) => {
 
 export const getDataUser = async () => {
   try {
-    const data = await AsyncStorage.getItem('@dataUserEticket:key');
+    const data = await AsyncStorage.getItem('@dataUserRaovat01062018:key');
     return JSON.parse(data) !== null ? JSON.parse(data) : null;
   } catch (error) {
     return null;

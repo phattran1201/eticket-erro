@@ -6,8 +6,7 @@ import {
   Platform,
   StatusBar,
   Vibration,
-  View,
-  AsyncStorage
+  View
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { connect } from 'react-redux';
@@ -18,12 +17,7 @@ import {
 } from '../../../constants/Constants';
 import strings from '../../../constants/Strings';
 import { COLOR_PRIMARY, COLOR_SECONDARY } from '../../../constants/style';
-import {
-  getCurrentLanguage,
-  getToken,
-  saveDeviceInfo,
-  getDeviceInfo
-} from '../../../utils/asyncStorage';
+import { getCurrentLanguage, getToken } from '../../../utils/asyncStorage';
 import global from '../../../utils/globalUtils';
 import MyComponent from '../../view/MyComponent';
 import {
@@ -31,10 +25,6 @@ import {
   loadAllData,
   reloadUnreadNotificationNumber
 } from './SplashActions';
-
-import DeviceInfo from 'react-native-device-info';
-
-import firebase from '../../../utils/firebase';
 
 const logo = require('../../../assets/images/logo.png');
 
@@ -56,18 +46,6 @@ class SplashComponent extends MyComponent {
 
   componentDidMount() {
     AppState.addEventListener('change', this.handleAppStateChange);
-    const language = DeviceInfo.getDeviceLocale();
-
-    firebase
-      .messaging()
-      .getToken()
-      .then(token => {
-        this._onChangeToken(token, language);
-      });
-
-    firebase.messaging().onTokenRefresh(token => {
-      this._onChangeToken(token, language);
-    });
 
     this.props.loadAllData(isLoggedIn => {
       this.props.navigation.replace(
@@ -125,20 +103,6 @@ class SplashComponent extends MyComponent {
   handleAppStateChange = nextAppState => {
     console.log('bambi appstate change', nextAppState);
     global.appState = nextAppState;
-  };
-  _onChangeToken = (token, language) => {
-    const data = {
-      device_token: token,
-      device_type: Platform.OS,
-      device_language: language
-    };
-    // console.log('dauphaiphat: SplashComponent -> _onChangeToken -> data', data);
-
-    saveDeviceInfo(data);
-
-    getDeviceInfo(e => {
-      console.log('device info', e);
-    });
   };
 
   render() {

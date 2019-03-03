@@ -44,7 +44,7 @@ TabSelector.propTypes = {
   selected: PropTypes.bool.isRequired
 };
 
-export default class LoginComponent extends MyComponent {
+export default class q  SQALoginComponent extends MyComponent {
   constructor(props) {
     super(props);
 
